@@ -13,5 +13,50 @@ namespace Testing2
             clsStock aStock = new clsStock();
             Assert.IsNotNull(aStock);
         }
+
+        [TestMethod]
+        public void ProductNameOK()
+        {
+            clsStock aStock = new clsStock();
+            string testString = "TestString";
+            aStock.productName = testString;
+            Assert.AreEqual(aStock.productName, testString);
+        }
+
+        [TestMethod]
+        public void SupplierNameOK()
+        {
+            clsStock aStock = new clsStock();
+            string testString = "testName";
+            aStock.supplierName = testString;
+            Assert.AreEqual(aStock.supplierName, testString);
+        }
+
+        [TestMethod]
+        public void inStockOK()
+        {
+            clsStock aStock = new clsStock();
+            Boolean testBool = true;
+            aStock.inStock = testBool;
+            Assert.AreEqual(aStock.inStock, testBool);
+        }
+
+        [TestMethod]
+        public void QuantityAvailableOK()
+        {
+            clsStock aStock = new clsStock();
+            Int32 testInt = 13;
+            aStock.quantityAvailable = testInt;
+            Assert.AreEqual(aStock.quantityAvailable, testInt);
+        }
+
+        [TestMethod]
+        public void LastDeliveryOK()
+        {
+            clsStock aStock = new clsStock();
+            DateTime testDate = DateTime.Now.Date;
+            aStock.lastDelivery = testDate;
+            Assert.AreEqual(aStock.lastDelivery, testDate);
+        }
     }
 }
