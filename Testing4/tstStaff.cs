@@ -82,6 +82,18 @@ namespace Testing4
             Assert.AreEqual(staff.FullName, TestData);
         }
 
+        [TestMethod]
+        public void EmployeeIdPropertOK()
+        {
+            //create an instance of the class we want to create
+            clsStaff staff = new clsStaff();
+            //Create some test data
+            int TestData = 1;
+            //Assign the data to the property
+            staff.EmployeeId = TestData;
+            //test to see that the two values are the same
+            Assert.AreEqual(staff.EmployeeId, TestData);
+        }
 
 
     }
