@@ -9,5 +9,6 @@ namespace ClassLibrary
         public int MonthlySalary { get; set; }
         public string Department { get; set; }
         public string FullName { get; set; }
+        public int EmployeeId { get; set; }
     }
 }
