@@ -58,5 +58,15 @@ namespace Testing2
             aStock.lastDelivery = testDate;
             Assert.AreEqual(aStock.lastDelivery, testDate);
         }
-    }
+        [TestMethod]
+        public void ProductIdOK()
+        {
+
+
+            clsStock aStock = new clsStock();
+            int testInt = 12;
+            aStock.productID = testInt;
+            Assert.AreEqual(aStock.productID, testInt);
+        }
+    } 
 }

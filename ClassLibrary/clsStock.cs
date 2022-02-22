@@ -9,5 +9,6 @@ namespace ClassLibrary
         public bool inStock { get; set; }
         public int quantityAvailable { get; set; }
         public DateTime lastDelivery { get; set; }
+        public int productID { get; set; }
     }
 }
