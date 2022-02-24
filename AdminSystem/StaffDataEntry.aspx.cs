@@ -22,7 +22,6 @@ public partial class _1_DataEntry : System.Web.UI.Page
     {
         //create a new instance of clsStaff
         clsStaff staff = new clsStaff();
-
         //Capture the full name
         staff.FullName = txtFullName.Text;
         //Capture the department
@@ -34,6 +33,8 @@ public partial class _1_DataEntry : System.Web.UI.Page
         //Capture the manager check box
         staff.Manager = chkManager.Checked;
 
+        // store the full name in the session object
+         Session["staff"] = staff;
 
         //navigate to the viewer page
         Response.Redirect("StaffViewer.aspx");
