@@ -68,5 +68,113 @@ namespace Testing2
             aStock.productID = testInt;
             Assert.AreEqual(aStock.productID, testInt);
         }
-    } 
+
+        [TestMethod]
+        public void FindMethodOK()
+        {
+            clsStock aStock = new clsStock();
+            Boolean Found = false;
+            Int32 productID = 1;
+            Found = aStock.Find(aStock.productID);
+            Assert.IsTrue(Found);
+
+        }
+
+        [TestMethod]
+        public void testStockQuantityAvailableFound()
+        {
+            clsStock aStock = new clsStock();
+            Boolean Found = false;
+            Boolean OK = true;
+            Int32 productID = 1;
+            Found = aStock.Find(productID);
+            if (aStock.quantityAvailable != 23)
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+
+        }
+
+        [TestMethod]
+        public void testProductIDFound()
+        {
+            clsStock aStock = new clsStock();
+            Boolean Found = false;
+            Boolean OK = true;
+            Int32 productID = 1;
+            Found = aStock.Find(productID);
+            if (aStock.productID != 1)
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+
+        public void testProductNameFound()
+        {
+            clsStock aStock = new clsStock();
+            Boolean Found = false;
+            Boolean OK = true;
+            Int32 productID = 1;
+            Found = aStock.Find(productID);
+            if (aStock.productName != "Fanta Orange")
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+
+
+        }
+
+        [TestMethod]
+
+        public void testSupplierNameFound()
+        {
+            clsStock aStock = new clsStock();
+            Boolean Found = false;
+            Boolean OK = true;
+            Int32 productID = 1;
+            Found = aStock.Find(productID);
+            if (aStock.supplierName != "Fanta")
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+
+        public void testLastDeliveryFound()
+        {
+            clsStock aStock = new clsStock();
+            Boolean Found = false;
+            Boolean OK = true;
+            Int32 productID = 1;
+            Found = aStock.Find(productID);
+            if (aStock.lastDelivery != Convert.ToDateTime(06 / 03 / 2022))
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+
+        public void testInStockOK()
+        {
+            clsStock aStock = new clsStock();
+            Boolean found = false;
+            Boolean OK = true;
+            Int32 productID = 1;
+            found = aStock.Find(productID);
+            if (aStock.inStock != true)
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+    }
 }
