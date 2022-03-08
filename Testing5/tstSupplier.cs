@@ -88,7 +88,7 @@ namespace Testing5
             //Boolean variable to store the results of the validation
             Boolean Found = false;
             //create some test data to use with the method
-            Int32 ProductID = 21;
+            Int32 ProductID = 1;
             //invoke the method
             Found = ASupplier.Find(ProductID);
             //test to see if the result is true
@@ -105,11 +105,11 @@ namespace Testing5
             //boolean variable to record if data is OK (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 ProductID = 21;
+            Int32 ProductID = 1;
             //invoke the method
             Found = ASupplier.Find(ProductID);
             //check the property
-            if (ASupplier.ProductID != 21)
+            if (ASupplier.ProductID != 1)
             {
                 OK = false;
             }
@@ -127,11 +127,11 @@ namespace Testing5
             //boolean variable to record if data is OK (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 ProductID = 21;
+            Int32 ProductID = 1;
             //invoke the method
             Found = ASupplier.Find(ProductID);
             //check the property
-            if (ASupplier.BrandName != "Test Brand")
+            if (ASupplier.BrandName != "Lucozade")
             {
                 OK = false;
             }
@@ -149,7 +149,7 @@ namespace Testing5
             //boolean variable to record if data is OK (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 ProductID = 21;
+            Int32 ProductID = 1;
             //invoke the method
             Found = ASupplier.Find(ProductID);
             //check the property
@@ -171,11 +171,11 @@ namespace Testing5
             //boolean variable to record if data is OK (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 ProductID = 21;
+            Int32 ProductID = 1;
             //invoke the method
             Found = ASupplier.Find(ProductID);
             //check the property
-            if (ASupplier.Total != 75.0)
+            if (ASupplier.Total != 65.0)
             {
                 OK = false;
             }
@@ -193,7 +193,7 @@ namespace Testing5
             //boolean variable to record if data is OK (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 ProductID = 21;
+            Int32 ProductID = 1;
             //invoke the method
             Found = ASupplier.Find(ProductID);
             //check the property
@@ -216,11 +216,11 @@ namespace Testing5
             //boolean variable to record if data is OK (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 ProductID = 21;
+            Int32 ProductID = 1;
             //invoke the method
             Found = ASupplier.Find(ProductID);
             //check the property
-            if (ASupplier.NextDelivery != Convert.ToDateTime("16/09/2015"))
+            if (ASupplier.NextDelivery != Convert.ToDateTime("14/02/2022"))
             {
                 OK = false;
             }
