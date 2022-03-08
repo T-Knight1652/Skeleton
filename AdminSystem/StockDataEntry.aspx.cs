@@ -17,7 +17,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
     protected void btnOK_Click(object sender, EventArgs e)
     {
         clsStock aStock = new clsStock();
-        aStock.productID = Convert.ToInt32(txtProductID.Text);
+     
         aStock.productName = txtProductName.Text;
         aStock.supplierName = txtSupplierName.Text;
         aStock.quantityAvailable = Convert.ToInt32(txtQuantityAvailable.Text);
