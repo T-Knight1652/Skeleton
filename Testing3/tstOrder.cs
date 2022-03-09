@@ -67,5 +67,17 @@ namespace Testing3
             //test to see that the two values are the same
             Assert.AreEqual(order.Price, testData);
         }
+        [TestMethod]
+        public void DispatchOK()
+        {
+            //create an instance of the class we want to create
+            clsOrder order = new clsOrder();
+            //Create some test data
+            Boolean TestData = false;
+            //Assign the data to the property
+            class.Dispatch = TestData;
+            //test to see if the two values ar the same
+            Assert.AreEqual(order.Dispatch, TestData);
+        }
     }
 }
