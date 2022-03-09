@@ -23,7 +23,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
         //create a new instance of clsSupplier
         clsSupplier aSupplier = new clsSupplier();
         //capture the brand name
-        aSupplier.BrandName = txtBrandName.Text;
+        aSupplier.BrandName = Convert.ToString(txtBrandName.Text);
         //capture the quantity
         aSupplier.Quantity = Convert.ToInt32(txtQuantity.Text);
         //capture the total
@@ -38,5 +38,35 @@ public partial class _1_DataEntry : System.Web.UI.Page
         Response.Redirect("SupplierViewer.aspx");
     }
 
-    
+
+
+    protected void btnFind_Click(object sender, EventArgs e)
+    {
+        lblError.Text = "";
+        //create an instance of the supplier class
+        clsSupplier aSupplier = new clsSupplier();
+        //variable to store the primary key
+        Int32 ProductID;
+        //variable to store the result of the find operation
+        Boolean Found = false;
+        //get the primary key entered by the user
+        ProductID = Convert.ToInt32(txtProductID.Text);
+        //find the record
+        Found = aSupplier.Find(ProductID);
+        //if found
+        if (Found == true)
+        {
+            //display the values of the properties in the form
+            txtBrandName.Text = aSupplier.BrandName;
+            txtQuantity.Text = aSupplier.Quantity.ToString();
+            txtTotal.Text = aSupplier.Total.ToString();
+            txtNextDelivery.Text = aSupplier.NextDelivery.ToString();
+        }
+        else
+        {
+            lblError.Text = "Record not found";
+        }
+
+
+    }
 }
