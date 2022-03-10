@@ -104,6 +104,22 @@ namespace ClassLibrary
                 return false;
             }
         }
+
+        public string valid(string productName, string supplierName, string quantityAvailable, string lastDelivery)
+        {
+            string error = "";
+            if (productName.Length == 0) 
+            {
+                error = error + "Product name must be at least 1 character";
+            }
+
+            if (productName.Length > 30)
+            {
+                error = error + "Product name must be under 30 characters";
+            }
+
+            return error;
+        }
     }
 
 }
