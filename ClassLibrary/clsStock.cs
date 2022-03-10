@@ -110,14 +110,34 @@ namespace ClassLibrary
             string error = "";
             if (productName.Length == 0) 
             {
-                error = error + "Product name must be at least 1 character";
+                error = error + "Product name must be at least 1 character long ";
             }
 
             if (productName.Length > 30)
             {
-                error = error + "Product name must be under 30 characters";
+                error = error + "Product name must be under 30 characters ";
             }
 
+            if (supplierName.Length == 0)
+            {
+                error = error + "Supplier name must be at least 1 character long ";
+            }
+
+            if (supplierName.Length > 30)
+            {
+                error = error + "Supplier name must be under 30 characters ";
+            }
+
+            DateTime dateTemp = Convert.ToDateTime(lastDelivery);
+            if (dateTemp < DateTime.Now.Date)
+            {
+                error = error + "Date cannot be in the past ";
+            }
+
+            if (dateTemp > DateTime.Now.Date)
+            {
+                error = error + "Date cannot be in the future ";
+            }
             return error;
         }
     }

@@ -8,13 +8,13 @@ namespace Testing2
     public class tstStock
     {
 
-        
+
         string productName = "drink";
         string supplierName = "DrinkSupplier";
         string quantityAvailable = "2";
-        string lastDelivery = DateTime.Now.ToString();
+        string lastDelivery = DateTime.Now.Date.ToString();
 
-           
+
         [TestMethod]
         public void InstanceOK()
         {
@@ -160,7 +160,7 @@ namespace Testing2
             Boolean OK = true;
             Int32 productID = 1;
             Found = aStock.Find(productID);
-            if (aStock.lastDelivery != Convert.ToDateTime("06 / 03 / 2022")) 
+            if (aStock.lastDelivery != Convert.ToDateTime("06 / 03 / 2022"))
             {
                 OK = false;
             }
@@ -218,13 +218,23 @@ namespace Testing2
         public void productNameMinPlusOne()
         {
             clsStock aStock = new clsStock();
-            string error = "aa";
+            string error = "";
+            string productName = "aa";
             error = aStock.valid(productName, supplierName, quantityAvailable, lastDelivery);
             Assert.AreEqual("", error);
 
         }
-
         [TestMethod]
+        public void productNameMid()
+        {
+            clsStock aStock = new clsStock();
+            string error = "";
+            productName = (string)productName.PadRight(15, 'a');
+            error = aStock.valid(productName, supplierName, quantityAvailable, lastDelivery);
+            Assert.AreEqual("", error);
+        }
+
+            [TestMethod]
         public void productNameMaxMinusOne()
         {
             clsStock aStock = new clsStock();
@@ -253,5 +263,133 @@ namespace Testing2
             error = aStock.valid(productName, supplierName, quantityAvailable, lastDelivery);
             Assert.AreNotEqual("", error);
         }
+
+        [TestMethod]
+        public void productNameExtremeMax()
+        {
+            clsStock aStock = new clsStock();
+            string error = "";
+            productName = (string)productName.PadRight(1000, 'a');
+            error = aStock.valid(productName, supplierName, quantityAvailable, lastDelivery);
+            Assert.AreNotEqual("", error);
+        }
+
+        [TestMethod]
+        public void supplierNameMinMinus1()
+        {
+            clsStock aStock = new clsStock();
+            string error = "";
+            string supplierName = "";
+            error = aStock.valid(productName, supplierName, quantityAvailable, lastDelivery);
+            Assert.AreNotEqual(error, "");
+
+
+        }
+
+        [TestMethod]
+        public void supplierNameMin()
+        {
+            clsStock aStock = new clsStock();
+            string error = "";
+            string supplierName = "a";
+            error = aStock.valid(productName, supplierName, quantityAvailable, lastDelivery);
+            Assert.AreEqual("", error);
+        }
+
+        [TestMethod]
+        public void supplierNameMinPlusOne()
+        {
+            clsStock aStock = new clsStock();
+            string error = "";
+            supplierName = "aa";
+            error = aStock.valid(productName, supplierName, quantityAvailable, lastDelivery);
+            Assert.AreEqual("", error);
+
+        }
+
+        [TestMethod]
+        public void supplierNameMid()
+        {
+            clsStock aStock = new clsStock();
+            string error = "";
+            supplierName = (string)supplierName.PadRight(15, 'a');
+            error = aStock.valid(productName, supplierName, quantityAvailable, lastDelivery);
+            Assert.AreEqual("", error);
+        }
+
+        [TestMethod]
+        public void supplierNameMaxMinusOne()
+        {
+            clsStock aStock = new clsStock();
+            string error = "";
+            supplierName = (string)supplierName.PadRight(29, 'a');
+            error = aStock.valid(productName, supplierName, quantityAvailable, lastDelivery);
+            Assert.AreEqual("", error);
+        }
+
+        [TestMethod]
+        public void supplierNameMax()
+        {
+            clsStock aStock = new clsStock();
+            string error = "";
+            supplierName = (string)supplierName.PadRight(30, 'a');
+            error = aStock.valid(productName, supplierName, quantityAvailable, lastDelivery);
+            Assert.AreEqual("", error);
+        }
+
+        [TestMethod]
+        public void supplierNameMaxPlusOne()
+        {
+            clsStock aStock = new clsStock();
+            string error = "";
+            supplierName = (string)supplierName.PadRight(31, 'a');
+            error = aStock.valid(productName, supplierName, quantityAvailable, lastDelivery);
+            Assert.AreNotEqual("", error);
+        }
+
+        [TestMethod]
+        public void supplierNameExtremeMax()
+        {
+            clsStock aStock = new clsStock();
+            string error = "";
+            supplierName = (string)supplierName.PadRight(1000, 'a');
+            error = aStock.valid(productName, supplierName, quantityAvailable, lastDelivery);
+            Assert.AreNotEqual("", error);
+        }
+
+        [TestMethod]
+        public void lastDeliveryExtremeMin()
+        {
+            clsStock aStock = new clsStock();
+            string error = "";
+            DateTime testDate = DateTime.Now.Date;
+            testDate = testDate.AddYears(-1000);
+            string lastDelivery = testDate.ToString();
+            error = aStock.valid(productName, supplierName, quantityAvailable, lastDelivery);
+            Assert.AreNotEqual("", error);
+        }
+
+        [TestMethod]
+        public void lastDeliveryMinMinusOne()
+        {
+            clsStock aStock = new clsStock();
+            string error = "";
+            DateTime testDate = DateTime.Now.Date;
+            testDate = testDate.AddDays(-1);
+            string lastDelivery = testDate.ToString();
+            error = aStock.valid(productName, supplierName, quantityAvailable, lastDelivery);
+            Assert.AreNotEqual("", error);
+        }
+        [TestMethod]
+        public void lastDeliveryMin()
+        {
+            clsStock aStock = new clsStock();
+            string error = "";
+            DateTime testDate = DateTime.Now.Date;
+            string lastDelivery = testDate.ToString();
+            error = aStock.valid(productName, supplierName, quantityAvailable, lastDelivery);
+            Assert.AreEqual("", error);
+        }
+
     }
 }
