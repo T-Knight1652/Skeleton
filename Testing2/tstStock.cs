@@ -7,6 +7,14 @@ namespace Testing2
     [TestClass]
     public class tstStock
     {
+
+        
+        string productName = "drink";
+        string supplierName = "DrinkSupplier";
+        string quantityAvailable = "2";
+        string lastDelivery = DateTime.Now.ToString();
+
+           
         [TestMethod]
         public void InstanceOK()
         {
@@ -173,6 +181,77 @@ namespace Testing2
                 OK = false;
             }
             Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void ValidMethodOK()
+        {
+            clsStock aStock = new clsStock();
+            string error = "";
+            error = aStock.valid(productName, supplierName, quantityAvailable, lastDelivery);
+            Assert.AreEqual(error, "");
+        }
+
+        [TestMethod]
+        public void productNameMinMinus1()
+        {
+            clsStock aStock = new clsStock();
+            string error = "";
+            string productName = "";
+            error = aStock.valid(productName, supplierName, quantityAvailable, lastDelivery);
+            Assert.AreNotEqual(error, "");
+
+
+        }
+
+        [TestMethod]
+        public void productNameMin()
+        {
+            clsStock aStock = new clsStock();
+            string error = "";
+            string productName = "a";
+            error = aStock.valid(productName, supplierName, quantityAvailable, lastDelivery);
+            Assert.AreEqual("", error);
+        }
+
+        [TestMethod]
+        public void productNameMinPlusOne()
+        {
+            clsStock aStock = new clsStock();
+            string error = "aa";
+            error = aStock.valid(productName, supplierName, quantityAvailable, lastDelivery);
+            Assert.AreEqual("", error);
+
+        }
+
+        [TestMethod]
+        public void productNameMaxMinusOne()
+        {
+            clsStock aStock = new clsStock();
+            string error = "";
+            productName = (string)productName.PadRight(29, 'a');
+            error = aStock.valid(productName, supplierName, quantityAvailable, lastDelivery);
+            Assert.AreEqual("", error);
+        }
+
+        [TestMethod]
+        public void productNameMax()
+        {
+            clsStock aStock = new clsStock();
+            string error = "";
+            productName = (string)productName.PadRight(30, 'a');
+            error = aStock.valid(productName, supplierName, quantityAvailable, lastDelivery);
+            Assert.AreEqual("", error);
+        }
+
+        [TestMethod]
+        public void ProductNameMaxPlusOne()
+        {
+            clsStock aStock = new clsStock();
+            string error = "";
+            productName = (string)productName.PadRight(31, 'a');
+            error = aStock.valid(productName, supplierName, quantityAvailable, lastDelivery);
+            Assert.AreNotEqual("", error);
         }
     }
 }
