@@ -117,14 +117,14 @@ namespace ClassLibrary
             //if one record is found (there should be either one or zero!)
             if (DB.Count == 1)
             {
-                //set the private data members to the test data value
+                //copy the data from the database to the private data members
                 mEmployeeId = Convert.ToInt32(DB.DataTable.Rows[0]["EmployeeId"]);
                 mFullName = Convert.ToString(DB.DataTable.Rows[0]["FullName"]);
                 mDepartment = Convert.ToString(DB.DataTable.Rows[0]["Department"]);
                 mMonthlySalary = Convert.ToInt32(DB.DataTable.Rows[0]["MonthlySalary"]);
                 mStartJob = Convert.ToDateTime(DB.DataTable.Rows[0]["StartJob"]);
                 mManager = Convert.ToBoolean(DB.DataTable.Rows[0]["Manager"]);
-                //always return true
+                //return if everything is ok
                 return true;
             }
             //If no record was found
