@@ -75,7 +75,7 @@ namespace Testing2
             clsStock aStock = new clsStock();
             Boolean Found = false;
             Int32 productID = 1;
-            Found = aStock.Find(aStock.productID);
+            Found = aStock.Find(productID);
             Assert.IsTrue(Found);
 
         }
@@ -112,7 +112,6 @@ namespace Testing2
         }
 
         [TestMethod]
-
         public void testProductNameFound()
         {
             clsStock aStock = new clsStock();
@@ -130,7 +129,6 @@ namespace Testing2
         }
 
         [TestMethod]
-
         public void testSupplierNameFound()
         {
             clsStock aStock = new clsStock();
@@ -154,7 +152,7 @@ namespace Testing2
             Boolean OK = true;
             Int32 productID = 1;
             Found = aStock.Find(productID);
-            if (aStock.lastDelivery != Convert.ToDateTime(06 / 03 / 2022))
+            if (aStock.lastDelivery != Convert.ToDateTime("06 / 03 / 2022")) 
             {
                 OK = false;
             }
