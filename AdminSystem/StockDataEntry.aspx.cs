@@ -18,16 +18,36 @@ public partial class _1_DataEntry : System.Web.UI.Page
     {
         clsStock aStock = new clsStock();
      
-        aStock.productName = txtProductName.Text;
-        aStock.supplierName = txtSupplierName.Text;
-        aStock.quantityAvailable = Convert.ToInt32(txtQuantityAvailable.Text);
-        aStock.inStock = Convert.ToBoolean(chkInStock.Checked);
-        aStock.lastDelivery = Convert.ToDateTime(txtLastDelivery.Text);
-
-        Session["aStock"] = aStock;
+        string productName = txtProductName.Text;
+        string supplierName = txtSupplierName.Text;
+        string quantityAvailable = txtQuantityAvailable.Text;
+        string lastDelivery = txtLastDelivery.Text;
+        string error = "";
+        error = aStock.valid(productName, supplierName, quantityAvailable, lastDelivery);
+        if (error == "")
+        {
+            aStock.productName = productName;
+            aStock.supplierName = supplierName;
+            aStock.quantityAvailable = Convert.ToInt32(quantityAvailable);
+            aStock.lastDelivery = Convert.ToDateTime(lastDelivery);
+            if (aStock.quantityAvailable > 0)
+            {
+                chkInStock.Checked = true;
+            }
+            else
+            {
+                chkInStock.Checked = false;
+            }
+            Session["aStock"] = aStock;
+            Response.Redirect("StockViewer.aspx");
+        }
+        else
+        {
+            lblError.Text = error;
+        }
         
-        //Navigate to viewer page
-        Response.Redirect("StockViewer.aspx");
+        
+       
     }
 
 
