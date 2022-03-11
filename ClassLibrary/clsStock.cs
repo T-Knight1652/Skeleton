@@ -127,16 +127,40 @@ namespace ClassLibrary
             {
                 error = error + "Supplier name must be under 30 characters ";
             }
-
-            DateTime dateTemp = Convert.ToDateTime(lastDelivery);
-            if (dateTemp < DateTime.Now.Date)
+            try
             {
-                error = error + "Date cannot be in the past ";
+                DateTime dateTemp = Convert.ToDateTime(lastDelivery);
+                if (dateTemp < DateTime.Now.Date)
+                {
+                    error = error + "Date cannot be in the past ";
+                }
+
+                if (dateTemp > DateTime.Now.Date)
+                {
+                    error = error + "Date cannot be in the future ";
+                }
+            }
+            catch
+            {
+                error = error + "Must be a date";
             }
 
-            if (dateTemp > DateTime.Now.Date)
+            try
             {
-                error = error + "Date cannot be in the future ";
+                int tempInt = Convert.ToInt32(quantityAvailable);
+                if(tempInt < 0)
+                {
+                    error = error + "Quantity available cannot be negative";
+                }
+
+                if (tempInt > 10000)
+                {
+                    error = error + "Quantity available cannot be over 10000";
+                }
+            }
+            catch
+            {
+                error = error + "Quantity available must be an integer";
             }
             return error;
         }
