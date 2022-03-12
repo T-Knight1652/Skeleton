@@ -73,6 +73,15 @@ namespace Testing2
             allStock.stockList = testList;
             Assert.AreEqual(allStock.count, testList.Count);
         }
+
+        [TestMethod]
+        public void twoRecordsPresent()
+        {
+            clsStockCollection allStock = new clsStockCollection();
+            Assert.AreEqual(2, allStock.count);
+        }
     }
+
+   
 
 }
