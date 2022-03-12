@@ -7,7 +7,7 @@ namespace ClassLibrary
 
         public clsStockCollection()
         {
-            clsStockCollection testStock = new clsStockCollection();
+            clsStockCollection testStock = new clsStockCollection(); 
              
         }
             
