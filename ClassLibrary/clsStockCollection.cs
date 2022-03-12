@@ -4,6 +4,13 @@ namespace ClassLibrary
 {
     public class clsStockCollection
     {
+
+        public clsStockCollection()
+        {
+            clsStockCollection testStock = new clsStockCollection(); 
+             
+        }
+            
         List<clsStock> mStockList = new List<clsStock>();
 
         public int count
