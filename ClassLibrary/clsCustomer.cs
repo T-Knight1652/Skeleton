@@ -131,5 +131,73 @@ namespace ClassLibrary
                 return false;
             }
         }
+
+        public string Valid(string password, string fullname, string email, string creationDate)
+        {
+            //create a string variable to store the error
+            String Error = "";
+            //create a temporary varialbe to store the date values
+            DateTime DateTemp;
+            //if the Password is blank
+            if (password.Length == 0)
+            {
+                //record the error
+                Error = Error + "The password can't be blank : ";
+            }
+            //if the password is greater than 20 characters
+            if (password.Length > 20)
+            {
+                //record the error
+                Error = Error + "The password can't be more than 20 characters ; ";
+            }
+            try
+            {
+                //copy the dateAdded value to the DateTemp variable
+                DateTemp = Convert.ToDateTime(creationDate);
+                if (DateTemp < DateTime.Now.Date)
+                {
+                    //record the error
+                    Error = Error + "The date cannot be in the past : ";
+                }
+                // check to see if the date is greater than todays date
+                if (DateTemp > DateTime.Now.Date)
+                {
+                    //record the error
+                    Error = Error + "The date cannot be in the future : ";
+                }
+            }
+            catch
+            {
+                //record the error
+                Error = Error + "The date was not a valid date : ";
+            }
+            //if the Fullname is blank
+            if (fullname.Length == 0)
+            {
+                //record the error
+                Error = Error + "The Fullname can't be blank : ";
+            }
+            //if the Fullname is greater than 30 characters
+            if (fullname.Length > 30)
+            {
+                //record the error
+                Error = Error + "The fullname can't be more than 30 characters ; ";
+            }
+
+            //if the Email is blank
+            if (email.Length == 0)
+            {
+                //record the error
+                Error = Error + "The email can't be blank : ";
+            }
+            //if the email is greater than 50 characters
+            if (email.Length > 50)
+            {
+                //record the error
+                Error = Error + "The email can't be more than 50 characters ; ";
+            }
+            //return any error messages
+            return Error;
+        }
     }
 }
