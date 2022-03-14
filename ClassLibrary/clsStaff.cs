@@ -135,5 +135,11 @@ namespace ClassLibrary
             }
 
         }
+
+
+        public string Valid(string fullName, string department, string monthlySalary, string startJob)
+        {
+            return "";
+        }
     }
 }
