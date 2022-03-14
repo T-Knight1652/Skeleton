@@ -7,6 +7,13 @@ namespace Testing4
     [TestClass]
     public class tstSatff
     {
+        //good test data
+        //create some test data to pass to the method
+        string FullName = "Karina Brown";
+        string Department = "Marketing";
+        string MonthlySalary = "1000";
+        string StartJob = DateTime.Now.Date.ToString();
+
         [TestMethod]
         public void InstanceOK()
         {
@@ -243,7 +250,18 @@ namespace Testing4
             Assert.IsTrue(OK);
         }
 
-
+        [TestMethod]
+        public void ValidMethodOK()
+        {
+            //create an instance of the class we want to create
+            clsStaff staff = new clsStaff();
+            //String variable to store any error message
+            string Error = "";
+            //invoke the method
+            Error = staff.Valid(FullName,Department,MonthlySalary,StartJob);
+            //test to see if the result is correct
+            Assert.AreEqual(Error, "");
+        }
 
 
     }
