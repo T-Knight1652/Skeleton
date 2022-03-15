@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System;
 
 namespace ClassLibrary
 {
@@ -7,8 +8,29 @@ namespace ClassLibrary
 
         public clsStockCollection()
         {
-            clsStockCollection testStock = new clsStockCollection(); 
-             
+            Int32 index = 0;
+            Int32 recordCount = 0;
+            clsDataConnection DB = new clsDataConnection();
+            DB.Execute("sproc_tblStock_SelectAll");
+            recordCount = DB.Count;
+
+            while (index < recordCount)
+            {
+                clsStock aStock = new clsStock();
+                aStock.productID = Convert.ToInt32(DB.DataTable.Rows[index]["productID"]);
+                aStock.productName = Convert.ToString(DB.DataTable.Rows[index]["productName"]);
+                aStock.supplierName = Convert.ToString(DB.DataTable.Rows[index]["supplierName"]);
+                aStock.quantityAvailable = Convert.ToInt32(DB.DataTable.Rows[index]["quantityAvailable"]);
+                aStock.lastDelivery = Convert.ToDateTime(DB.DataTable.Rows[index]["lastDelivery"]);
+                aStock.inStock = Convert.ToBoolean(DB.DataTable.Rows[index]["inStock"]);
+                mStockList.Add(aStock);
+                index++;
+            }
+        
+
+
+
+
         }
             
         List<clsStock> mStockList = new List<clsStock>();
