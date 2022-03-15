@@ -139,7 +139,21 @@ namespace ClassLibrary
 
         public string Valid(string fullName, string department, string monthlySalary, string startJob)
         {
-            return "";
+            //create a string variable to store the error
+            String Error = "";
+            //if the full name is blank
+            if (fullName.Length == 0)
+            {
+                //record the error
+                Error = Error + "The full name may not be blank : ";
+            }
+            if (fullName.Length > 50)
+            {
+                //record the error
+                Error = Error + "The full name must be less than 50 characters :  ";
+            }
+            //return any error messages
+            return Error;
         }
     }
 }
