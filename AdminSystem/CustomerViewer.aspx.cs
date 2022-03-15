@@ -16,5 +16,8 @@ public partial class CustomerViewer : System.Web.UI.Page
         ACustomer = (clsCustomer) Session["ACustomer"];
         //display the fullname for this entry
         Response.Write(ACustomer.Fullname);
+        Response.Write(ACustomer.Password);
+        Response.Write(ACustomer.Email);
+        Response.Write(ACustomer.CreationDate);
     }
 }

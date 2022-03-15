@@ -18,11 +18,31 @@ public partial class _1_DataEntry : System.Web.UI.Page
         //create a new instance of clsCustomer
         clsCustomer ACustomer = new clsCustomer();
         //capture the fullname
-        ACustomer.Fullname = txtFullname.Text;
-        //store the fullname in the session object
-        Session["ACustomer"] = ACustomer;
-        //Navigate to the viewer page
-        Response.Redirect("CustomerViewer.aspx");
+        string Fullname = txtFullname.Text;
+        string Password = txtPassword.Text;
+        string Email = txtEmail.Text;
+        string CreationDate = txtCreationDate.Text;
+        //variable to store error message
+        string Error = "";
+        //validate the data
+        Error = ACustomer.Valid(Fullname, Password, Email, CreationDate);
+        if (Error =="")
+        {
+            //capture the values
+            ACustomer.Fullname = Fullname;
+            ACustomer.Password = Password;
+            ACustomer.Email = Email;
+            ACustomer.CreationDate = Convert.ToDateTime(CreationDate);
+            //store the fullname in the session object
+            Session["ACustomer"] = ACustomer;
+            //Navigate to the viewer page
+            Response.Redirect("CustomerViewer.aspx");
+        }
+        else
+        {
+            //display the error message
+            lblError.Text = Error;
+        }
     }
 
     protected void btnFind_Click(object sender, EventArgs e)
