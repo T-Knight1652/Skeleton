@@ -34,14 +34,8 @@ namespace Testing2
 
         }
 
-        [TestMethod]
-        public void countStockOK()
-        {
-            clsStockCollection allStock = new clsStockCollection();
-            Int32 someCount = 0;
-            allStock.count = someCount;
-            Assert.AreEqual(allStock.count, someCount);
-        }
+
+
 
         [TestMethod]
         public void thisStockOK()
@@ -74,14 +68,10 @@ namespace Testing2
             Assert.AreEqual(allStock.count, testList.Count);
         }
 
-        [TestMethod]
-        public void twoRecordsPresent()
-        {
-            clsStockCollection allStock = new clsStockCollection();
-            Assert.AreEqual(2, allStock.count);
-        }
+
     }
-
-   
-
 }
+
+
+
+
