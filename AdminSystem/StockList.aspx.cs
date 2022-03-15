@@ -16,14 +16,13 @@ public partial class _1_List : System.Web.UI.Page
         }
     }
 
-    void displayStocks()
+    public void displayStocks()
     {
         clsStockCollection stocks = new clsStockCollection();
         lstStockList.DataSource = stocks.stockList;
         lstStockList.DataTextField = "productID";
-        lstStockList.DataTextField = "productName";
+        lstStockList.DataValueField = "productName";
         lstStockList.DataBind();
 
     }
-
 }
