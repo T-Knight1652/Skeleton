@@ -177,7 +177,16 @@ namespace ClassLibrary
                 //record the error
                 Error = Error + "The date was not a valid date : ";
             }
-
+            if (department.Length == 0)
+            {
+                //record the error
+                Error = Error + "The department may not be blank : ";
+            }
+            if (department.Length > 50)
+            {
+                //record the error
+                Error = Error + "The department must be less than 50 characters :  ";
+            }
 
             //return any error messages
             return Error;
