@@ -141,6 +141,8 @@ namespace ClassLibrary
         {
             //create a string variable to store the error
             String Error = "";
+            //create a temporary variable to store date values
+            DateTime DateTemp;
             //if the full name is blank
             if (fullName.Length == 0)
             {
@@ -152,6 +154,31 @@ namespace ClassLibrary
                 //record the error
                 Error = Error + "The full name must be less than 50 characters :  ";
             }
+
+            try
+            {
+                //copy the dateAdded value to the DateTemp variable
+                DateTemp = Convert.ToDateTime(startJob);
+                if (DateTemp < DateTime.Now.Date)
+                {
+                    //record the error
+                    Error = Error + "The date cannot be in the past : ";
+                }
+                //check to see if the date is greater than today's date
+                if (DateTemp > DateTime.Now.Date)
+                {
+                    //record the error
+                    Error = Error + "The date cannot be in the future : ";
+                }
+
+            }
+            catch
+            {
+                //record the error
+                Error = Error + "The date was not a valid date : ";
+            }
+
+
             //return any error messages
             return Error;
         }

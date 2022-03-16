@@ -386,6 +386,126 @@ namespace Testing4
             Assert.AreNotEqual(Error, "");
         }
 
+        [TestMethod]
+        public void StartJobExtremeMin()
+        {
+            //create an instance of the class we want to create
+            clsStaff staff = new clsStaff();
+            //string variable to store any error message
+            String Error = "";
+            //create a variable to store the test date data
+            DateTime TestDate;
+            //set the date to todays date
+            TestDate = DateTime.Now.Date;
+            //change the date to whatever the date is less 100 years
+            TestDate = TestDate.AddYears(-100);
+            //Convert the date variable to a string variable
+            string StartJob = TestDate.ToString();
+            //invoke the method
+            Error = staff.Valid(FullName, Department, MonthlySalary, StartJob);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void StartJobMinLessOne()
+        {
+            //create an instance of the class we want to create
+            clsStaff staff = new clsStaff();
+            //string variable to store any error message
+            String Error = "";
+            //create a variable to store the test date data
+            DateTime TestDate;
+            //set the date totodays date
+            TestDate = DateTime.Now.Date;
+            //change the date to whatever the date is less 1 day
+            TestDate = TestDate.AddDays(-1);
+            //convert the date variable to a string variable
+            string StartJob = TestDate.ToString();
+            //invoke the method
+            Error = staff.Valid(FullName, Department, MonthlySalary, StartJob);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void StartJobMin()
+        {
+            //create an instance of the class we want to create
+            clsStaff staff = new clsStaff();
+            //string variable to store any error message
+            String Error = "";
+            //create a variable to store the test date data
+            DateTime TestDate;
+            //set the date totodays date
+            TestDate = DateTime.Now.Date;
+            //convert the date variable to a string variable
+            string StartJob = TestDate.ToString();
+            //invoke the method
+            Error = staff.Valid(FullName, Department, MonthlySalary, StartJob);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void StartJobMinPlusOne()
+        {
+            //create an instance of the class we want to create
+            clsStaff staff = new clsStaff();
+            //string variable to store any error message
+            String Error = "";
+            //create a variable to store the test date data
+            DateTime TestDate;
+            //set the date totodays date
+            TestDate = DateTime.Now.Date;
+            //change the date to whatever the date is plus 1 day
+            TestDate = TestDate.AddDays(1);
+            //convert the date variable to a string variable
+            string StartJob = TestDate.ToString();
+            //invoke the method
+            Error = staff.Valid(FullName, Department, MonthlySalary, StartJob);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void StartJobExtremeMax()
+        {
+            //create an instance of the class we want to create
+            clsStaff staff = new clsStaff();
+            //string variable to store any error message
+            String Error = "";
+            //create a variable to store the test date data
+            DateTime TestDate;
+            //set the date totodays date
+            TestDate = DateTime.Now.Date;
+            //change the date to whatever the date is plus 100 years
+            TestDate = TestDate.AddYears(100);
+            //convert the date variable to a string variable
+            string StartJob = TestDate.ToString();
+            //invoke the method
+            Error = staff.Valid(FullName, Department, MonthlySalary, StartJob);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void StartJobInvalidData()
+        {
+            //create an instance of the class we want to create
+            clsStaff staff = new clsStaff();
+            //string variable to store any error message
+            String Error = "";
+            //set the StartJob to a non date value
+            string StartJob = "This is not a date!";
+            //invoke the method
+            Error = staff.Valid(FullName, Department, MonthlySalary, StartJob);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+
+
     }
 
 }
