@@ -132,5 +132,16 @@ namespace ClassLibrary
             }
             
         }
+
+        public string Valid(string BrandName,
+                            string Quantity,
+                            string Total,
+                            string NextDelivery)
+        //this function accepts 4 parameters for validation
+        //the function returns a string containing any error message
+        //if no errors found then blank string is returned
+        {
+            return "";
+        }
     }
 }
