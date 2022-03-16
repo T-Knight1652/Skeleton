@@ -133,15 +133,113 @@ namespace ClassLibrary
             
         }
 
-        public string Valid(string BrandName,
-                            string Quantity,
-                            string Total,
-                            string NextDelivery)
-        //this function accepts 4 parameters for validation
-        //the function returns a string containing any error message
-        //if no errors found then blank string is returned
+        public string Valid(string brandName,
+                            string quantity,
+                            string total,
+                            string nextDelivery)
         {
-            return "";
+            //create a string variable to store the error
+            String Error = "";
+            //create a temporary variable to store integer values
+            Int32 IntTemp;
+            //create a temporary variable to store float values
+            Double DoubleTemp;
+            //create a temporary variable to store date values
+            DateTime DateTemp;
+
+            //~~~~~~~~~~~~~~~~~~~~~~~~~~~~ BrandName Validation ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+            //if the BrandName is blank
+            if (brandName.Length == 0) 
+            {
+                //record the error
+                Error = Error + "The brand name may not be blank : ";
+            }
+
+            //if the BrandName is greater than 50 characters
+            if (brandName.Length > 50)
+            {
+                //record the error
+                Error = Error + "The brand name is too long : ";
+            }
+
+            //if the BrandName is only 1 character
+            if (brandName.Length == 1)
+            {
+                //record the error
+                Error = Error + "The brand name is too short : ";
+            }
+
+            //~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Quantity Validation ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+            try
+            {
+                //copy the quantity value to the IntTemp variable
+                IntTemp = Convert.ToInt32(quantity);
+
+                //if the value of quantity is less than 2
+                if (IntTemp < 2)
+                {
+                    //record the error
+                    Error = Error + "Entered quantity value is too low : ";
+                }
+
+                //if the value of quantity is greater than the max value of int32
+                if (IntTemp > 2147483647)
+                {
+                    //record the error
+                    Error = Error + "Entered quantity value is too big";
+                }
+            }
+            catch
+            {
+                //record the error
+                Error = Error + "The inputted quantity value was invalid : ";
+            }
+
+            //~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Total Validation ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+            try
+            {
+                //copy the Total value to the DoubleTemp variable
+                DoubleTemp = Convert.ToDouble(total);
+
+                //if the value of total is less than 0
+                if (DoubleTemp < 0)
+                {
+                    //record the error
+                    Error = Error + "The inputted total value cannot be negative";
+                }
+
+            }
+            catch
+            {
+                //record the error
+                Error = Error + "The inputted total value was invalid : ";
+            }
+
+            //~~~~~~~~~~~~~~~~~~~~~~~~~~~~ NextDelivery Validation ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+            try
+            {
+                //copy the NextDelivery value to the DateTemp variable
+                DateTemp = Convert.ToDateTime(nextDelivery);
+
+                //if the date is less than todays date
+                if (DateTemp < DateTime.Now.Date)
+                {
+                    //record the error
+                    Error = Error + "The date cannot be in the past : ";
+                }
+            }
+            catch
+            {
+                //record the error
+                Error = Error + "The inputted date value was invalid : ";
+            }
+
+            //return any error messages
+            return Error;
         }
     }
 }
