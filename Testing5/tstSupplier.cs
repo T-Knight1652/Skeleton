@@ -242,12 +242,494 @@ namespace Testing5
             //create an instance of the class we want to create
             clsSupplier aSupplier = new clsSupplier();
             //string variable to store any error message
-            string Error = "";
+            String Error = "";
             //invoke the method
             Error = aSupplier.Valid(BrandName, Quantity, Total, NextDelivery);
             //test to see that the result is correct
             Assert.AreEqual(Error, "");
         }
+
+        //BrandName validation testing
+
+        [TestMethod]
+        public void BrandNameExtremeMin()
+        {
+            //create an instance of the class we want to create
+            clsSupplier aSupplier = new clsSupplier();
+            //string variable to store any error message
+            String Error = "";
+            //this should fail
+            String BrandName = "";
+            //invoke the method
+            Error = aSupplier.Valid(BrandName, Quantity, Total, NextDelivery);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void BrandNameMinLessOne()
+        {
+            //create an instance of the class we want to create
+            clsSupplier aSupplier = new clsSupplier();
+            //string variable to store any error message
+            String Error = "";
+            //this should fail
+            String BrandName = "c";
+            //invoke the method
+            Error = aSupplier.Valid(BrandName, Quantity, Total, NextDelivery);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void BrandNameMin()
+        {
+            //create an instance of the class we want to create
+            clsSupplier aSupplier = new clsSupplier();
+            //string variable to store any error message
+            string Error = "";
+            //this should pass
+            String BrandName = "ce";
+            //invoke the method
+            Error = aSupplier.Valid(BrandName, Quantity, Total, NextDelivery);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void BrandNameMinPlusOne()
+        {
+            //create an instance of the class we want to create
+            clsSupplier aSupplier = new clsSupplier();
+            //string variable to store any error message
+            string Error = "";
+            //this should pass
+            String BrandName = "cel";
+            //invoke the method
+            Error = aSupplier.Valid(BrandName, Quantity, Total, NextDelivery);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void BrandNameMaxLessOne()
+        {
+            //create an instance of the class we want to create
+            clsSupplier aSupplier = new clsSupplier();
+            //string variable to store any error message
+            string Error = "";
+            //this should pass
+            String BrandName = "ofYTDeMNAUamlclKXXNr8V98m0RfYeSZPhwLHHrWaro8cBl8f";  //49
+            //invoke the method
+            Error = aSupplier.Valid(BrandName, Quantity, Total, NextDelivery);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void BrandNameMax()
+        {
+            //create an instance of the class we want to create
+            clsSupplier aSupplier = new clsSupplier();
+            //string variable to store any error message
+            string Error = "";
+            //this should pass
+            String BrandName = "ofYTDeMNAUamlclKXXNr8V98m0RfYeSZPhwLHHrWaro8cBl8fg"; //50
+            //invoke the method
+            Error = aSupplier.Valid(BrandName, Quantity, Total, NextDelivery);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void BrandNameMaxPlusOne()
+        {
+            //create an instance of the class we want to create
+            clsSupplier aSupplier = new clsSupplier();
+            //string variable to store any error message
+            string Error = "";
+            //this should fail
+            String BrandName = "ofYTDeMNAUamlclKXXNr8V98m0RfYeSZPhwLHHrWaro8cBl8fgl"; //51
+            //invoke the method
+            Error = aSupplier.Valid(BrandName, Quantity, Total, NextDelivery);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void BrandNameMid()
+        {
+            //create an instance of the class we want to create
+            clsSupplier aSupplier = new clsSupplier();
+            //string variable to store any error message
+            string Error = "";
+            //this should pass
+            String BrandName = "W0rrofS4TCOWgZuQYyul3qnV8"; //25
+            //invoke the method
+            Error = aSupplier.Valid(BrandName, Quantity, Total, NextDelivery);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void BrandNameExtremeMax()
+        {
+            //create an instance of the class we want to create
+            clsSupplier aSupplier = new clsSupplier();
+            //string variable to store any error message
+            string Error = "";
+            //this should fail
+            String BrandName = "17ftWvci8Mt1ZZiNM9Hzck8NYLgunbQS8uganAa4lkpny" +
+                               "SZ0fwBm0kSAA92rhrcMzQZT6VeF1MOvNrFIPT7I58YDSM" +
+                               "jHor8PrshOPw9HnV56Q61gtPUwJ0JBCxZuOjmCQ0LDN0Z" +
+                               "pbhmpqNwhWrLTvle5lS3nIe1bMi8Lze709DefopFUpuLE" +
+                               "u0Y61JpkwmVcLwyPB3PxFIkoJmAG9s6Kdm5yMFVFcbv5O" +
+                               "YGdfLPMGHvkrKyXgFEZw1iTa7CoF7rX7o6rC2drSuzs2M" +
+                               "bvm03VP0P6CNDOx6xbB87aH10hVPMbZ0I0mbVU23pUOQ7" +
+                               "pi9w5t1oekJXW4sASeoq2yONlZSwBYbl9oPv3MLQdiorz" +
+                               "5nCOC03DuRwKCrJ7px1QyOVMlPhoTnUgOUsSbndSqZSaC" +
+                               "aOHO7bVZBaRmJF2lHHE4wrehgdzQdZVym8G9qzVkS7jrM" +
+                               "1lDLL4tEktDZTL7aXI7Bun4rGKIdiSvEXrgU5EYzc1vaQ" +
+                               "zo2bv"; //500
+            //invoke the method
+            Error = aSupplier.Valid(BrandName, Quantity, Total, NextDelivery);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+        //Quantity validation testing
+
+        [TestMethod]
+        public void QuantityExtremeMin()
+        {
+            //create an instance of the class we want to create
+            clsSupplier aSupplier = new clsSupplier();
+            //string variable to store any error message
+            String Error = "";
+            //this should fail
+            String Quantity = "-100";
+            //invoke the method
+            Error = aSupplier.Valid(BrandName, Quantity, Total, NextDelivery);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void QuantityMinLessOne()
+        {
+            //create an instance of the class we want to create
+            clsSupplier aSupplier = new clsSupplier();
+            //string variable to store any error message
+            String Error = "";
+            //this should fail
+            String Quantity = "1";
+            //invoke the method
+            Error = aSupplier.Valid(BrandName, Quantity, Total, NextDelivery);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void QuantityMin()
+        {
+            //create an instance of the class we want to create
+            clsSupplier aSupplier = new clsSupplier();
+            //string variable to store any error message
+            String Error = "";
+            //this should pass
+            String Quantity = "2";
+            //invoke the method
+            Error = aSupplier.Valid(BrandName, Quantity, Total, NextDelivery);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void QuantityMinPlusOne()
+        {
+            //create an instance of the class we want to create
+            clsSupplier aSupplier = new clsSupplier();
+            //string variable to store any error message
+            String Error = "";
+            //this should pass
+            String Quantity = "2";
+            //invoke the method
+            Error = aSupplier.Valid(BrandName, Quantity, Total, NextDelivery);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void QuantityMaxLessOne()
+        {
+            //create an instance of the class we want to create
+            clsSupplier aSupplier = new clsSupplier();
+            //string variable to store any error message
+            String Error = "";
+            //this should pass
+            String Quantity = "2147483646";
+            //invoke the method
+            Error = aSupplier.Valid(BrandName, Quantity, Total, NextDelivery);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void QuantityMax()
+        {
+            //create an instance of the class we want to create
+            clsSupplier aSupplier = new clsSupplier();
+            //string variable to store any error message
+            String Error = "";
+            //this should pass
+            String Quantity = "2147483647";
+            //invoke the method
+            Error = aSupplier.Valid(BrandName, Quantity, Total, NextDelivery);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void QuantityMaxPlusOne()
+        {
+            //create an instance of the class we want to create
+            clsSupplier aSupplier = new clsSupplier();
+            //string variable to store any error message
+            String Error = "";
+            //this should fail
+            String Quantity = "2147483648";
+            //invoke the method
+            Error = aSupplier.Valid(BrandName, Quantity, Total, NextDelivery);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void QuantityExtremeMax()
+        {
+            //create an instance of the class we want to create
+            clsSupplier aSupplier = new clsSupplier();
+            //string variable to store any error message
+            String Error = "";
+            //this should fail
+            String Quantity = "9999999999";
+            //invoke the method
+            Error = aSupplier.Valid(BrandName, Quantity, Total, NextDelivery);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void QuantityMid()
+        {
+            //create an instance of the class we want to create
+            clsSupplier aSupplier = new clsSupplier();
+            //string variable to store any error message
+            String Error = "";
+            //this should pass
+            String Quantity = "1073741824";
+            //invoke the method
+            Error = aSupplier.Valid(BrandName, Quantity, Total, NextDelivery);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void QuantityInvalidData()
+        {
+            //create an instance of the class we want to create
+            clsSupplier aSupplier = new clsSupplier();
+            //string variable to store any error message
+            String Error = "";
+            //this should fail
+            String Quantity = "fred";
+            //invoke the method
+            Error = aSupplier.Valid(BrandName, Quantity, Total, NextDelivery);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+        //Total validation testing
+
+        [TestMethod]
+        public void TotalExtremeMin()
+        {
+            //create an instance of the class we want to create
+            clsSupplier aSupplier = new clsSupplier();
+            //string variable to store any error message
+            String Error = "";
+            //this should fail
+            String Total = "-10000000";
+            //invoke the method
+            Error = aSupplier.Valid(BrandName, Quantity, Total, NextDelivery);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void TotalMinLessOne()
+        {
+            //create an instance of the class we want to create
+            clsSupplier aSupplier = new clsSupplier();
+            //string variable to store any error message
+            String Error = "";
+            //this should fail
+            String Total = "-0.01";
+            //invoke the method
+            Error = aSupplier.Valid(BrandName, Quantity, Total, NextDelivery);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void TotalMin()
+        {
+            //create an instance of the class we want to create
+            clsSupplier aSupplier = new clsSupplier();
+            //string variable to store any error message
+            String Error = "";
+            //this should pass
+            String Total = "0.00";
+            //invoke the method
+            Error = aSupplier.Valid(BrandName, Quantity, Total, NextDelivery);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void TotalMinPlusOne()
+        {
+            //create an instance of the class we want to create
+            clsSupplier aSupplier = new clsSupplier();
+            //string variable to store any error message
+            String Error = "";
+            //this should pass
+            String Total = "0.01";
+            //invoke the method
+            Error = aSupplier.Valid(BrandName, Quantity, Total, NextDelivery);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void TotalInvalidData()
+        {
+            //create an instance of the class we want to create
+            clsSupplier aSupplier = new clsSupplier();
+            //string variable to store any error message
+            String Error = "";
+            //this should fail
+            String Total = "fred";
+            //invoke the method
+            Error = aSupplier.Valid(BrandName, Quantity, Total, NextDelivery);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+        //NextDelivery validation testing
+
+        [TestMethod]
+        public void NextDeliveryExtremeMin()
+        {
+            //create an instance of the class we want to create
+            clsSupplier aSupplier = new clsSupplier();
+            //string variable to store any error message
+            String Error = "";
+            //create a variable to store the test date data
+            DateTime TestDate;
+            //set the data to today's date
+            TestDate = DateTime.Now.Date;
+            //change the date to whatever the date is minus 100 years
+            TestDate = TestDate.AddYears(-100);
+            //convert the date variable to a string variable
+            String NextDelivery = TestDate.ToString();
+            //invoke the method
+            Error = aSupplier.Valid(BrandName, Quantity, Total, NextDelivery);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void NextDeliveryMinLessOne()
+        {
+            //create an instance of the class we want to create
+            clsSupplier aSupplier = new clsSupplier();
+            //string variable to store any error message
+            String Error = "";
+            //create a variable to store the test date data
+            DateTime TestDate;
+            //set the data to today's date
+            TestDate = DateTime.Now.Date;
+            //change the date to whatever the date is minus 1 day
+            TestDate = TestDate.AddDays(-1);
+            //convert the date variable to a string variable
+            String NextDelivery = TestDate.ToString();
+            //invoke the method
+            Error = aSupplier.Valid(BrandName, Quantity, Total, NextDelivery);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void NextDeliveryMin()
+        {
+            //create an instance of the class we want to create
+            clsSupplier aSupplier = new clsSupplier();
+            //string variable to store any error message
+            String Error = "";
+            //create a variable to store the test date data
+            DateTime TestDate;
+            //set the data to today's date
+            TestDate = DateTime.Now.Date;
+            //convert the date variable to a string variable
+            String NextDelivery = TestDate.ToString();
+            //invoke the method
+            Error = aSupplier.Valid(BrandName, Quantity, Total, NextDelivery);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void NextDeliveryMinPlusOne()
+        {
+            //create an instance of the class we want to create
+            clsSupplier aSupplier = new clsSupplier();
+            //string variable to store any error message
+            String Error = "";
+            //create a variable to store the test date data
+            DateTime TestDate;
+            //set the data to today's date
+            TestDate = DateTime.Now.Date;
+            //change the date to whatever the date is plus 1 day
+            TestDate = TestDate.AddDays(1);
+            //convert the date variable to a string variable
+            String NextDelivery = TestDate.ToString();
+            //invoke the method
+            Error = aSupplier.Valid(BrandName, Quantity, Total, NextDelivery);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void NextDeliveryInvalidData()
+        {
+            //create an instance of the class we want to create
+            clsSupplier aSupplier = new clsSupplier();
+            //string variable to store any error message
+            String Error = "";
+            //this should fail
+            String NextDelivery = "fred";
+            //invoke the method
+            Error = aSupplier.Valid(BrandName, Quantity, Total, NextDelivery);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+
+
+
+
+
 
 
     }
