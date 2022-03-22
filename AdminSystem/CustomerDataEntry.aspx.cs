@@ -8,9 +8,21 @@ using ClassLibrary;
 
 public partial class _1_DataEntry : System.Web.UI.Page
 {
+    //variable to store the primary key with page level scope
+    Int32 CustomerID;
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        //get the number of the customer to be processed
+        CustomerID = Convert.ToInt32(Session["CustomerID"]);
+        if (IsPostBack == false)
+        {
+            //if this is not a new record
+            if (CustomerID != -1)
+            {
+                //display the current data for the record
+                DisplayCustomer();
+            }
+        }
     }
 
     protected void btnOK_Click(object sender, EventArgs e)
@@ -29,14 +41,35 @@ public partial class _1_DataEntry : System.Web.UI.Page
         if (Error =="")
         {
             //capture the values
+            ACustomer.CustomerID = CustomerID;
             ACustomer.Fullname = Fullname;
             ACustomer.Password = Password;
             ACustomer.Email = Email;
             ACustomer.CreationDate = Convert.ToDateTime(CreationDate);
-            //store the fullname in the session object
-            Session["ACustomer"] = ACustomer;
-            //Navigate to the viewer page
-            Response.Redirect("CustomerViewer.aspx");
+            ACustomer.OverEighteen = chkOverEighteen.Checked;
+            //create a new instance of the customer collection
+            clsCustomerCollection CustomerList = new clsCustomerCollection();
+
+            //if this is a new record i.e. CustomerID = -1 then add the data
+            if (CustomerID == -1)
+            {
+                //set the ThisCustomer property
+                CustomerList.ThisCustomer = ACustomer;
+                //add the new record
+                CustomerList.Add();
+            }
+            //otherwise it must be an update
+            else
+            {
+                //find the record to update
+                CustomerList.ThisCustomer.Find(CustomerID);
+                //set the ThisCustomer property
+                CustomerList.ThisCustomer = ACustomer;
+                //update the record
+                CustomerList.Update();
+            }
+            //redirect back to the listpage
+            Response.Redirect("CustomerList.aspx");
         }
         else
         {
@@ -81,6 +114,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
             txtFullname.Text = ACustomer.Fullname;
             txtEmail.Text = ACustomer.Email;
             txtCreationDate.Text = ACustomer.CreationDate.ToString();
+            chkOverEighteen.Checked = ACustomer.OverEighteen;
         }
         else if (isNumber)
         {
@@ -90,5 +124,20 @@ public partial class _1_DataEntry : System.Web.UI.Page
             txtEmail.Text = "";
             txtCreationDate.Text = "";
         }
+    }
+
+    void DisplayCustomer()
+    {
+        //create an instance of the customerCollection
+        clsCustomerCollection Customer = new clsCustomerCollection();
+        //find the record to update
+        Customer.ThisCustomer.Find(CustomerID);
+        //display the data for this record
+        txtCustomerID.Text = Customer.ThisCustomer.CustomerID.ToString();
+        txtPassword.Text = Customer.ThisCustomer.Password;
+        txtFullname.Text = Customer.ThisCustomer.Fullname;
+        txtEmail.Text = Customer.ThisCustomer.Email;
+        txtCreationDate.Text = Customer.ThisCustomer.CreationDate.ToString();
+        chkOverEighteen.Checked = Customer.ThisCustomer.OverEighteen;
     }
 }
