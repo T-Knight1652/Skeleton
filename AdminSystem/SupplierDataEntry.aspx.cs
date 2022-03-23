@@ -8,37 +8,93 @@ using ClassLibrary;
 
 public partial class _1_DataEntry : System.Web.UI.Page
 {
+    //variable to store the primary key with the page level scope
+    Int32 ProductID;
+
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        //get the number of the product to be processed
+        ProductID = Convert.ToInt32(Session["ProductID"]);
+        if (IsPostBack == false)
+        {
+            //if this is not a new record
+            if (ProductID != -1)
+            {
+                //display the current data for the record
+                DisplaySupplier();
+            }
+        }
     }
 
-    protected void chkActive_CheckedChanged(object sender, EventArgs e)
-    {
-
-    }
+    //protected void chkActive_CheckedChanged(object sender, EventArgs e)
+    //{
+    //
+    //}
 
     protected void btnOK_Click(object sender, EventArgs e)
     {
         //create a new instance of clsSupplier
         clsSupplier aSupplier = new clsSupplier();
         //capture the brand name
-        aSupplier.BrandName = Convert.ToString(txtBrandName.Text);
+        string BrandName = txtBrandName.Text;
         //capture the quantity
-        aSupplier.Quantity = Convert.ToInt32(txtQuantity.Text);
+        string Quantity = txtQuantity.Text;
         //capture the total
-        aSupplier.Total = Convert.ToDouble(txtTotal.Text);   
+        string Total = txtTotal.Text;
         //capture the active
-        aSupplier.Active = chkActive.Checked;
+        //string Active = chkActive.Checked;
         //capture the next delivery date
-        aSupplier.NextDelivery = Convert.ToDateTime(txtNextDelivery.Text);
-        //store the brand name in the session object
-        Session["aSupplier"] = aSupplier;
-        //navigate to the viewer page
-        Response.Redirect("SupplierViewer.aspx");
+        string NextDelivery = txtNextDelivery.Text;
+        //variable to store any error messages
+        string Error = "";
+        //validate the data
+        Error = aSupplier.Valid(BrandName, Quantity, Total, NextDelivery);
+        if (Error == "")
+        {
+            //capture the product id
+            aSupplier.ProductID = ProductID;
+            //capture the brand name
+            aSupplier.BrandName = BrandName;
+            //capture the quantity
+            aSupplier.Quantity = Convert.ToInt32(Quantity);
+            //capture the total
+            aSupplier.Total = Convert.ToDouble(Total);
+            //capture the active
+            aSupplier.Active = chkActive.Checked;
+            //capture the next delivery
+            aSupplier.NextDelivery = Convert.ToDateTime(NextDelivery);
+            //create a new instance of the supplier collection
+            clsSupplierCollection SupplierList = new clsSupplierCollection();
+
+            //if this is a new record i.e. ProductID = -1 then add the data
+            if (ProductID == -1)
+            {
+                //set the ThisSupplier Property
+                SupplierList.ThisSupplier = aSupplier;
+                //add the new record
+                SupplierList.Add();
+            }
+            //otherwise it must be an update
+            else
+            {
+                //find the record to update
+                SupplierList.ThisSupplier.Find(ProductID);
+                //set the ThisSupplier property
+                SupplierList.ThisSupplier = aSupplier;
+                //update the record
+                SupplierList.Update();
+                
+            }
+            //redirect back to the listpage
+            Response.Redirect("SupplierList.aspx");
+
+        }
+        else
+        {
+            //display the error message
+            lblError.Text = Error;
+        }
     }
-
-
 
     protected void btnFind_Click(object sender, EventArgs e)
     {
@@ -65,8 +121,28 @@ public partial class _1_DataEntry : System.Web.UI.Page
         else
         {
             lblError.Text = "Record not found";
-        }
+        } 
+    }
+
+    void DisplaySupplier()
+    {
+        //create an instance of the supplier collection class
+        clsSupplierCollection SupplierList = new clsSupplierCollection();
+        //find the record to update
+        SupplierList.ThisSupplier.Find(ProductID);
+        //display the data for this record
+        txtProductID.Text = SupplierList.ThisSupplier.ProductID.ToString();
+        txtBrandName.Text = SupplierList.ThisSupplier.BrandName;
+        txtQuantity.Text = SupplierList.ThisSupplier.Quantity.ToString();
+        txtTotal.Text = SupplierList.ThisSupplier.Total.ToString();
+        txtNextDelivery.Text = SupplierList.ThisSupplier.NextDelivery.ToString();
+        chkActive.Checked = SupplierList.ThisSupplier.Active;
+    }
 
 
+    protected void btnCancel_Click(object sender, EventArgs e)
+    {
+        //redirect back to the listpage
+        Response.Redirect("SupplierList.aspx");
     }
 }
