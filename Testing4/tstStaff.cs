@@ -631,7 +631,84 @@ namespace Testing4
             Assert.AreNotEqual(Error, "");
         }
 
-       
+        [TestMethod]
+        public void MonthlySalaryExtremeMin()
+        {
+            //create an instance of the class we want to create
+            clsStaff staff = new clsStaff();
+            //string variable to store any error message
+            String Error = "";
+            //this should fail
+            String MonthlySalary = "-10000000";
+            //invoke the method
+            Error = staff.Valid(FullName, Department, MonthlySalary, StartJob);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void MonthlySalaryMinLessOne()
+        {
+            //create an instance of the class we want to create
+            clsStaff staff = new clsStaff();
+            //string variable to store any error message
+            String Error = "";
+            //this should fail
+            String MonthlySalary = "-0.01";
+            //invoke the method
+            Error = staff.Valid(FullName, Department, MonthlySalary, StartJob);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void MonthlySalaryMin()
+        {
+            //create an instance of the class we want to create
+            clsStaff staff = new clsStaff();
+            //string variable to store any error message
+            String Error = "";
+            //this should pass
+            String MonthlySalary = "0.00";
+            //invoke the method
+            Error = staff.Valid(FullName, Department, MonthlySalary, StartJob);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void MonthlySalaryMinPlusOne()
+        {
+            //create an instance of the class we want to create
+            clsStaff staff = new clsStaff();
+            //string variable to store any error message
+            String Error = "";
+            //this should pass
+            String MonthlySalary = "0.01";
+            //invoke the method
+            Error = staff.Valid(FullName, Department, MonthlySalary, StartJob);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void MonthlySalaryInvalidData()
+        {
+            //create an instance of the class we want to create
+            clsStaff staff = new clsStaff();
+            //string variable to store any error message
+            String Error = "";
+            //this should fail
+            String MonthlySalary = "Bill";
+            //invoke the method
+            Error = staff.Valid(FullName, Department, MonthlySalary, StartJob);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+
+
+
 
     }
 
