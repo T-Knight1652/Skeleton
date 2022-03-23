@@ -88,5 +88,145 @@ namespace Testing5
             //test to see that the two values are the same
             Assert.AreEqual(AllSuppliers.Count, TestList.Count);
         }
+
+        [TestMethod]
+        public void AddMethodOK()
+        {
+            //create an instance of the class we want to create
+            clsSupplierCollection AllSuppliers = new clsSupplierCollection();
+            //create some test data to assign to the property
+            clsSupplier TestItem = new clsSupplier();
+            //var to store the primary key
+            Int32 PrimaryKey = 0;
+            //set the properties of the test object
+            TestItem.ProductID = 1;
+            TestItem.BrandName = "some brandname";
+            TestItem.Quantity = 50;
+            TestItem.Total = 69.99;
+            TestItem.Active = true;
+            TestItem.NextDelivery = DateTime.Now.Date.AddDays(2);
+            //assign the data to the property
+            AllSuppliers.ThisSupplier = TestItem;
+            //add the record
+            PrimaryKey = AllSuppliers.Add();
+            //set the primary key of the test data
+            TestItem.ProductID = PrimaryKey;
+            //find the record
+            AllSuppliers.ThisSupplier.Find(PrimaryKey);
+            //test to see that the two values are the same
+            Assert.AreEqual(AllSuppliers.ThisSupplier, TestItem);
+        }
+
+        [TestMethod]
+        public void UpdateMethodOK()
+        {
+            //create an instance of the class we want to create
+            clsSupplierCollection AllSuppliers = new clsSupplierCollection();
+            //create some test data to assign to the property
+            clsSupplier TestItem = new clsSupplier();
+            //var to store the primary key
+            Int32 PrimaryKey = 0;
+            //set the properties of the test object
+            TestItem.BrandName = "some brandname";
+            TestItem.Quantity = 50;
+            TestItem.Total = 69.99;
+            TestItem.Active = true;
+            TestItem.NextDelivery = DateTime.Now.Date.AddDays(2);
+            //assign the data to the property
+            AllSuppliers.ThisSupplier = TestItem;
+            //add the record
+            PrimaryKey = AllSuppliers.Add();
+            //set the primary key of the test data
+            TestItem.ProductID = PrimaryKey;
+            //modify the test data
+            TestItem.BrandName = "another brandname";
+            TestItem.Quantity = 30;
+            TestItem.Total = 49.99;
+            TestItem.Active = false;
+            TestItem.NextDelivery = DateTime.Now.Date.AddDays(1);
+            //set the record based on the new test data
+            AllSuppliers.ThisSupplier = TestItem;
+            //Update the record
+            AllSuppliers.Update();
+            //find the record
+            AllSuppliers.ThisSupplier.Find(PrimaryKey);
+            //test to see ThisSupplier matches the test data
+            Assert.AreEqual(AllSuppliers.ThisSupplier, TestItem);
+        }
+
+        [TestMethod]
+        public void DeleteMethodOK()
+        {
+            //create an instance of the class we want to create
+            clsSupplierCollection AllSuppliers = new clsSupplierCollection();
+            //create some test data to assign to the property
+            clsSupplier TestItem = new clsSupplier();
+            //var to store the primary key
+            Int32 PrimaryKey = 0;
+            //set the properties of the test object
+            TestItem.BrandName = "some brandname";
+            TestItem.Quantity = 50;
+            TestItem.Total = 69.99;
+            TestItem.Active = true;
+            TestItem.NextDelivery = DateTime.Now.Date.AddDays(2);
+            //assign the data to the property
+            AllSuppliers.ThisSupplier = TestItem;
+            //add the record
+            PrimaryKey = AllSuppliers.Add();
+            //set the primary key of the test data
+            TestItem.ProductID = PrimaryKey;
+            //find the record
+            AllSuppliers.ThisSupplier.Find(PrimaryKey);
+            //delete the record
+            AllSuppliers.Delete();
+            //now find the record
+            Boolean Found = AllSuppliers.ThisSupplier.Find(PrimaryKey);
+            //test to see that the record was not found
+            Assert.IsFalse(Found);
+        }
+
+        [TestMethod]
+        public void ReportByBrandNameMethodOK()
+        {
+            //create an instance of the class containing unfiltered results
+            clsSupplierCollection AllSuppliers = new clsSupplierCollection();
+            //create an instance of the filtered data
+            clsSupplierCollection FilteredSuppliers = new clsSupplierCollection();
+            //apply a blank string (should return all results)
+            FilteredSuppliers.ReportByBrandName("generic brandname");
+            //test to see that the two values are the same
+            Assert.AreEqual(0, FilteredSuppliers.Count);
+        }
+
+        [TestMethod]
+        public void ReportByBrandNameTestDataFound()
+        {
+            //create an instance of the filtered data
+            clsSupplierCollection FilteredSuppliers = new clsSupplierCollection();
+            //var to store outcome
+            Boolean OK = true;
+            //apply a brand name that doesnt exist
+            FilteredSuppliers.ReportByBrandName("Lucozade");
+            //check that the correct number of records are found
+            if (FilteredSuppliers.Count == 2)
+            {
+                //check that the first record is ID 1
+                if (FilteredSuppliers.SupplierList[0].ProductID != 1)
+                {
+                    OK = false;
+                }
+                //check that the second record is ID 3
+                if (FilteredSuppliers.SupplierList[1].ProductID != 3)
+                {
+                    OK = false;
+                }
+            }
+            else
+            {
+                OK = false;
+            }
+            //test to see that there are no records
+            Assert.IsTrue(OK);
+        }
     }
 }
