@@ -143,6 +143,10 @@ namespace ClassLibrary
             String Error = "";
             //create a temporary variable to store date values
             DateTime DateTemp;
+            //create a temporary variable to store float values
+            Double DoubleTemp;
+
+            //_________________________________FULL NAME VALID METHOD______________________________
             //if the full name is blank
             if (fullName.Length == 0)
             {
@@ -155,9 +159,11 @@ namespace ClassLibrary
                 Error = Error + "The full name must be less than 50 characters :  ";
             }
 
+
+            //_________________________________START JOB VALID METHOD______________________________
             try
             {
-                //copy the dateAdded value to the DateTemp variable
+                //copy the startjob value to the DateTemp variable
                 DateTemp = Convert.ToDateTime(startJob);
                 if (DateTemp < DateTime.Now.Date)
                 {
@@ -177,15 +183,39 @@ namespace ClassLibrary
                 //record the error
                 Error = Error + "The date was not a valid date : ";
             }
+
+            //_________________________________DEPARTMENT VALID METHOD______________________________
+            //if the department is blank
             if (department.Length == 0)
             {
                 //record the error
                 Error = Error + "The department may not be blank : ";
             }
+            //if the department is longer than 50 characters
             if (department.Length > 50)
             {
                 //record the error
                 Error = Error + "The department must be less than 50 characters :  ";
+            }          
+
+            //_________________________________MONTHLY SALARY VALID METHOD______________________________
+            try
+            {
+                //copy the Monthly salary value to the DoubleTemp variable
+                DoubleTemp = Convert.ToDouble(monthlySalary);
+
+                //if the value of monthly salary is less than 0
+                if (DoubleTemp < 0)
+                {
+                    //record the error
+                    Error = Error + "The inputted monthly salary value cannot be negative : ";
+                }
+
+            }
+            catch
+            {
+                //record the error
+                Error = Error + "The inputted monthly salary value was invalid : ";
             }
 
             //return any error messages
