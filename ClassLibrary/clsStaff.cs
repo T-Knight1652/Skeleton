@@ -170,19 +170,20 @@ namespace ClassLibrary
                     //record the error
                     Error = Error + "The date cannot be in the past : ";
                 }
-                //check to see if the date is greater than today's date
+                // check to see if the date is before todays date
                 if (DateTemp > DateTime.Now.Date)
                 {
                     //record the error
                     Error = Error + "The date cannot be in the future : ";
                 }
-
+                
             }
             catch
             {
                 //record the error
                 Error = Error + "The date was not a valid date : ";
             }
+
 
             //_________________________________DEPARTMENT VALID METHOD______________________________
             //if the department is blank
