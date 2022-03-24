@@ -23,21 +23,43 @@ public partial class _1_DataEntry : System.Web.UI.Page
         //create a new instance of clsStaff
         clsStaff staff = new clsStaff();
         //Capture the full name
-        staff.FullName = txtFullName.Text;
+        string FullName = txtFullName.Text;
         //Capture the department
-        staff.Department = txtDepartment.Text;
+        string Department = txtDepartment.Text;
         //Capture the monthly salary
-        staff.MonthlySalary = (int)Convert.ToDouble(txtMonthlySalary.Text);
+        string MonthlySalary = txtMonthlySalary.Text;
         //Capture the start date of the job
-        staff.StartJob = Convert.ToDateTime(txtStartJob.Text);
-        //Capture the manager check box
-        staff.Manager = chkManager.Checked;
+        string StartJob = txtStartJob.Text;
+        //variable to store any error messages
+        string Error = "";
+        //validate the data
+        Error = staff.Valid(FullName, Department, MonthlySalary, StartJob);
+        if (Error == "")
+        {
+            //capture the full name
+            staff.FullName = FullName;
+            //capture the department
+            staff.Department = Department;
+            //capture the MonthlySalary
+            staff.MonthlySalary = Convert.ToInt32(MonthlySalary);
+            //capture the StartJob
+            staff.StartJob = Convert.ToDateTime(StartJob);
+            //capture the manager
+            staff.Manager = chkManager.Checked;
 
-        // store the full name in the session object
-         Session["staff"] = staff;
+            //store the full name in the session object
+            Session["staff"] = staff;
+            //redirect to the viewer page
+            Response.Redirect("StaffViewer.aspx");
+        }
+        else
+        {
+            //display the error message
+            lblError.Text = Error;
+        }
+        
 
-        //navigate to the viewer page
-        Response.Redirect("StaffViewer.aspx");
+        
     }
 
     protected void btnFind_Click(object sender, EventArgs e)
