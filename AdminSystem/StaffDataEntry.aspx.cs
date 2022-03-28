@@ -8,8 +8,21 @@ using ClassLibrary;
 
 public partial class _1_DataEntry : System.Web.UI.Page
 {
+    //variable to store the primary key with page level scope
+    Int32 EmployeeId;
     protected void Page_Load(object sender, EventArgs e)
     {
+        //get the number of the staff to be processed
+        EmployeeId = Convert.ToInt32(Session["EmployeeId"]);
+        if (IsPostBack == false)
+        {
+            //if this is not a new record
+            if (EmployeeId != 1)
+            {
+                //display the current data for the record
+                DisplayStaff();
+            }
+        }
 
     }
 
@@ -32,10 +45,13 @@ public partial class _1_DataEntry : System.Web.UI.Page
         string StartJob = txtStartJob.Text;
         //variable to store any error messages
         string Error = "";
+        
         //validate the data
         Error = staff.Valid(FullName, Department, MonthlySalary, StartJob);
         if (Error == "")
         {
+            //capture the employee id
+            staff.EmployeeId = EmployeeId;
             //capture the full name
             staff.FullName = FullName;
             //capture the department
@@ -46,13 +62,32 @@ public partial class _1_DataEntry : System.Web.UI.Page
             staff.StartJob = Convert.ToDateTime(StartJob);
             //capture the manager
             staff.Manager = chkManager.Checked;
+            //create a new instance of the staff collection
+            clsStaffCollection StaffList = new clsStaffCollection();
 
-            //store the full name in the session object
-            Session["staff"] = staff;
+            //if this is a new record i.e. EmployeeId = -1 then add the data
+            if (EmployeeId == -1)
+            {
+                //set the ThisStaff property
+                StaffList.ThisStaff = staff;
+                //add the new record
+                StaffList.Add();
+            }
+            //otherwise it must be an update
+            else
+            {
+                //find the record to update
+                StaffList.ThisStaff.Find(EmployeeId);
+                //set the ThisStaff property
+                StaffList.ThisStaff = staff;
+                //update the record
+                StaffList.Update();
+            }
+        
             //redirect to the viewer page
-            Response.Redirect("StaffViewer.aspx");
+            Response.Redirect("StaffList.aspx");
         }
-        else
+        else 
         {
             //display the error message
             lblError.Text = Error;
@@ -88,5 +123,20 @@ public partial class _1_DataEntry : System.Web.UI.Page
             lblError.Text = "No match data";
         }
 
+    }
+
+    void DisplayStaff()
+    {
+        //create an instance of the staff book
+        clsStaffCollection StaffBook = new clsStaffCollection();
+        //find the record to update
+        StaffBook.ThisStaff.Find(EmployeeId);
+        //display the data for this record
+        txtEmployeeId.Text = StaffBook.ThisStaff.EmployeeId.ToString();
+        txtFullName.Text = StaffBook.ThisStaff.FullName;
+        txtDepartment.Text = StaffBook.ThisStaff.Department;
+        txtMonthlySalary.Text = StaffBook.ThisStaff.MonthlySalary.ToString();
+        txtStartJob.Text = StaffBook.ThisStaff.StartJob.ToString();
+        chkManager.Checked = StaffBook.ThisStaff.Manager;
     }
 }
