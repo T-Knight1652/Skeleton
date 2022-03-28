@@ -87,9 +87,42 @@ namespace Test_FrameWork
             Assert.AreEqual(AllStaff.ThisStaff, TestStaff);
         }
 
-        
+        [TestMethod]
+        public void AddMethodOkOK()
+        {
+            //create an instance of the class we want to create
+            clsStaffCollection AllStaff = new clsStaffCollection();
+            //create the item of  test data
+            clsStaff TestItem = new clsStaff();
+            //var to store the primary key
+            Int32 PrimaryKey = 0;
 
-       
-    }
+            //set the properties of the test object
+            TestItem.Manager = false;
+            TestItem.FullName = "Tom Holland";
+            TestItem.Department = "Marketing";
+            TestItem.MonthlySalary = 2200;
+            TestItem.StartJob = DateTime.Now.Date;
+
+            //set ThisStaff to the test data
+            AllStaff.ThisStaff = TestItem;
+            //add the record
+            PrimaryKey = AllStaff.Add();
+            //set the primary key of the test data
+            TestItem.EmployeeId = PrimaryKey;
+            //find record
+            AllStaff.ThisStaff.Find(PrimaryKey);
+            //test to see that the 2 valus are the same
+            Assert.AreEqual(AllStaff.ThisStaff, TestItem);
+
+
+        }
+
+
+
+
+
+
+        }
 }
     
