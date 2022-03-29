@@ -26,11 +26,6 @@ public partial class _1_DataEntry : System.Web.UI.Page
         }
     }
 
-    //protected void chkActive_CheckedChanged(object sender, EventArgs e)
-    //{
-    //
-    //}
-
     protected void btnOK_Click(object sender, EventArgs e)
     {
         //create a new instance of clsSupplier
@@ -41,8 +36,6 @@ public partial class _1_DataEntry : System.Web.UI.Page
         string Quantity = txtQuantity.Text;
         //capture the total
         string Total = txtTotal.Text;
-        //capture the active
-        //string Active = chkActive.Checked;
         //capture the next delivery date
         string NextDelivery = txtNextDelivery.Text;
         //variable to store any error messages
@@ -87,7 +80,6 @@ public partial class _1_DataEntry : System.Web.UI.Page
             }
             //redirect back to the listpage
             Response.Redirect("SupplierList.aspx");
-
         }
         else
         {
@@ -116,7 +108,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
             txtBrandName.Text = aSupplier.BrandName;
             txtQuantity.Text = aSupplier.Quantity.ToString();
             txtTotal.Text = aSupplier.Total.ToString();
-            txtNextDelivery.Text = aSupplier.NextDelivery.ToString();
+            txtNextDelivery.Text = aSupplier.NextDelivery.ToShortDateString();
         }
         else
         {
@@ -135,7 +127,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
         txtBrandName.Text = SupplierList.ThisSupplier.BrandName;
         txtQuantity.Text = SupplierList.ThisSupplier.Quantity.ToString();
         txtTotal.Text = SupplierList.ThisSupplier.Total.ToString();
-        txtNextDelivery.Text = SupplierList.ThisSupplier.NextDelivery.ToString();
+        txtNextDelivery.Text = SupplierList.ThisSupplier.NextDelivery.ToShortDateString();
         chkActive.Checked = SupplierList.ThisSupplier.Active;
     }
 

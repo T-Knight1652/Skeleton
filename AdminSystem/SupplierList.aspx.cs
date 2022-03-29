@@ -23,13 +23,32 @@ public partial class _1_List : System.Web.UI.Page
         //create an instance of the Supplier collection
         clsSupplierCollection Suppliers = new clsSupplierCollection();
         //set the data source to list of suppliers in the collection
-        lstSupplierList.DataSource = Suppliers.SupplierList;
+        //lstSupplierList.DataSource = Suppliers.SupplierList;
         //set the name of the primary key
-        lstSupplierList.DataValueField = "ProductID";
+        //lstSupplierList.DataValueField = "ProductID";
         //set the data field to display
-        lstSupplierList.DataTextField = "BrandName";
+        //lstSupplierList.DataTextField = "w";
+        //ListItem item = new ListItem("e j c", Suppliers.SupplierList[0].ProductID.ToString());
+        //lstSupplierList.Items.Add(item);
+
         //bind the data to the list
-        lstSupplierList.DataBind();
+        //lstSupplierList.DataBind();
+        //string columns = "{0, -55}{1, -35}{2, -35}";
+        string columns = "{0, -20} {1, 20} {2, -15}";
+        ListItem item;
+        item = new ListItem(String.Format(columns, "Product ID", "Brand Name", "Next Delivery"), "1");
+        lstSupplierList.Items.Add(item);
+
+        for (int i = 0; i < Suppliers.SupplierList.Count; i++)           
+        {
+            string ProductID = Suppliers.SupplierList[i].ProductID.ToString();
+            string BrandName = Suppliers.SupplierList[i].BrandName;
+            string NextDelivery = Suppliers.SupplierList[i].NextDelivery.ToShortDateString();
+
+
+            item = new ListItem(String.Format(columns, ProductID, BrandName, NextDelivery), ProductID);
+            lstSupplierList.Items.Add(item);
+        }
     }
 
     protected void btnAdd_Click(object sender, EventArgs e)
