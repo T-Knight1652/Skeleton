@@ -19,14 +19,39 @@ public partial class _1_DataEntry : System.Web.UI.Page
         //create a new instance of clsOrder
         clsOrder order = new clsOrder();
 
-        //capture the comments
-        order.Comments = txtComments.Text;
+        //capture the OrderID
+       string OrderID = txtOrderID.Text;
 
-        //store the comments in the session object
+        //capture the OrderDate
+         string OrderDate = txtOrderDate.Text;
+       
+
+
+
+        //capture the Price 
+        string Price = txtPrice.Text;
+       
+
+
+        //capture the dispatch
+        string dispatch = chkDispatch.Text; //check if this is right
+       
+
+        //capture the comments
+           string Comments = txtComments.Text;
+      
+       
+
+        //store the order in the session object
         Session["order"] = order;
 
 
         //navigate to the viewer page
         Response.Redirect("OrderViewer.aspx");
+    }
+
+    protected void chkDispatch_CheckedChanged(object sender, EventArgs e)
+    {
+
     }
 }
