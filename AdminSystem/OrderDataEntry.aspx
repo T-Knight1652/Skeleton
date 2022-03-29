@@ -29,7 +29,7 @@
         <asp:TextBox ID="txtOrderDate" runat="server" style="z-index: 1; left: 159px; top: 172px; position: absolute; height: 14px"></asp:TextBox>
         <asp:TextBox ID="txtComments" runat="server" style="z-index: 1; left: 159px; top: 256px; position: absolute; height: 15px"></asp:TextBox>
         <p>
-            <asp:CheckBox ID="chkDispatch" runat="server" style="z-index: 1; left: 19px; top: 284px; position: absolute" Text="Dispatch" width="124px" />
+            <asp:CheckBox ID="chkDispatch" runat="server" style="z-index: 1; left: 19px; top: 284px; position: absolute" Text="Dispatch" width="124px" OnCheckedChanged="chkDispatch_CheckedChanged" />
         </p>
         <asp:Button ID="btnOK" runat="server" OnClick="btnOK_Click" style="z-index: 1; left: 10px; top: 352px; position: absolute" Text="OK" />
         <p>
