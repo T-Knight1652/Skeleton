@@ -30,4 +30,10 @@ public partial class _1_ConfirmDelete : System.Web.UI.Page
         Response.Redirect("StaffList.aspx");
     }
 
+
+    protected void btnNo_Click(object sender, EventArgs e)
+    {
+        //redirect back to the main page
+        Response.Redirect("StaffList.aspx");
+    }
 }
