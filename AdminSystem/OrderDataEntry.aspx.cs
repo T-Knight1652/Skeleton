@@ -54,4 +54,33 @@ public partial class _1_DataEntry : System.Web.UI.Page
     {
 
     }
+
+    protected void btnFind_Click(object sender, EventArgs e)
+    {
+
+    }
+
+    protected void Button1_Click(object sender, EventArgs e)
+    {
+        //create an instance of the address class
+        clsOrder order = new clsOrder();
+        //cariable to store the primary key
+        Int32 orderID;
+        //cariable to store the result of the find operation 
+        Boolean Found = false;
+        //get the primary key enetered by the user
+        orderID = Convert.ToInt32(txtOrderID.Text);
+        //find the record 
+        Found = order.Find(orderID);
+        //if found 
+        if (Found == true)
+        {
+            //display the values of the properties in the form
+            txtOrderID.Text = order.OrderID.ToString();
+            txtOrderDate.Text = order.OrderDate.ToString();
+            txtComments.Text = order.Comments;
+            txtPrice.Text = order.Price.ToString();
+        }
+
+    }
 }

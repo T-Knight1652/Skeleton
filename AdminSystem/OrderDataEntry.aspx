@@ -9,6 +9,7 @@
 <body>
     <form id="form1" runat="server">
         <div>
+            <asp:Button ID="btnFind" runat="server" OnClick="Button1_Click" style="z-index: 1; left: 372px; top: 63px; position: absolute" Text="Find" />
             <asp:Label ID="lblOrderID" runat="server" style="z-index: 1; left: 26px; top: 71px; position: absolute" Text="Order ID" width="124px"></asp:Label>
             <asp:TextBox ID="txtOrderID" runat="server" style="z-index: 1; left: 159px; top: 69px; position: absolute; height: 17px"></asp:TextBox>
         </div>
