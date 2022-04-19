@@ -8,6 +8,13 @@ namespace Testing3
     public class tstOrder
     {
 
+        //good test data 
+        //some test data to pass to the method 
+        string OrderDate = DateTime.Now.Date.ToString();
+        string Comments = "some comments ";
+        string Price = "12.00";
+
+
         [TestMethod]
         public void InstanceOk()
         {
@@ -207,6 +214,43 @@ namespace Testing3
             Assert.IsTrue(OK);
         }
 
+        [TestMethod]
+        public void ValidMethodOK()
+        {
+            //create an instance of the class we want to create 
+            clsOrder order = new clsOrder();
+            //string variable to store any error message 
+            String Error = "";
+            //invoke the method 
+            Error = order.Valid(OrderDate, Comments, Price);
+            //test to see that the result is correct 
+            Assert.AreEqual(Error, "");
+
+        }
+
+       
+
+        [TestMethod]
+        public void OrderDateExtremeMin()
+        {
+            //create an instance of the class we want to create
+            clsOrder order = new clsOrder();
+            //string variable to store any error message 
+            String Error = "";
+            //create a variable to store the test date data
+            DateTime TestDate;
+            //set the date totodays date
+            TestDate = DateTime.Now.Date;
+            //change the date to whatever the date is less 100 years
+            TestDate = TestDate.AddYears(-100);
+            //convert the date variable to a string variable
+            string OrderDateAdded = TestDate.ToString();
+            //invoke the method 
+            Error = order.Valid(OrderDate, Comments, Price, OrderDateAdded);
+            //test to see that the restult is correct 
+            Assert.AreNotEqual(Error, "");
+
+        }
     }
 }
        
