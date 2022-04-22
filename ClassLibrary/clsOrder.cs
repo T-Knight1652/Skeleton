@@ -10,7 +10,7 @@ namespace ClassLibrary
         public DateTime mOrderDate; 
         public Boolean mDispatch; 
         public string mComments; 
-        public Double mPrice; 
+        public double mPrice; 
         public string mItem; 
 
         public string Item 
