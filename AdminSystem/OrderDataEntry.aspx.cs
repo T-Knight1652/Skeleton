@@ -24,23 +24,19 @@ public partial class _1_DataEntry : System.Web.UI.Page
 
         //capture the OrderDate
          string OrderDate = txtOrderDate.Text;
-       
-
-
 
         //capture the Price 
         string Price = txtPrice.Text;
        
-
-
         //capture the dispatch
         string dispatch = chkDispatch.Text; //check if this is right
-       
 
         //capture the comments
-           string Comments = txtComments.Text;
-      
-       
+        string Comments = txtComments.Text;
+
+        //capture the Item
+        string Item = txtItem.Text;
+
 
         //store the order in the session object
         Session["order"] = order;
@@ -80,7 +76,13 @@ public partial class _1_DataEntry : System.Web.UI.Page
             txtOrderDate.Text = order.OrderDate.ToString();
             txtComments.Text = order.Comments;
             txtPrice.Text = order.Price.ToString();
+            txtItem.Text = order.Item.ToString();
         }
+
+    }
+
+    protected void txtCustomer_TextChanged(object sender, EventArgs e)
+    {
 
     }
 }

@@ -17,14 +17,11 @@ public partial class _1Viewer : System.Web.UI.Page
         order = (clsOrder)Session["order"];
 
         //display the properties on the page
-        Response.Write(order.OrderID);
+        
 
+        Response.Write(order.Item);
         Response.Write(order.OrderDate);
-
         Response.Write(order.Price);
-
-        Response.Write(order.Dispatch);
-
         Response.Write(order.Comments);
     }
 }
