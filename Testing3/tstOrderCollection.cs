@@ -39,19 +39,7 @@ namespace Testing3
             //test to see that the two values are the same
             Assert.AreEqual(AllOrders.OrderList, TestList);
         }
-        [TestMethod]
-        public void CountPropertyOK()
-        {
-            clsOrderCollection AllOrders = new clsOrderCollection();
-            //create some test data to assign to the property
-            Int32 SomeCount = 2;
-            //assign the dat to the property
-            AllOrders.Count = SomeCount;
-            //test ot see that the two values are the same
-            Assert.AreEqual(AllOrders.Count, SomeCount);
-           
-        }
-
+    
         [TestMethod]
         public void ThisOrderPropertyOK(){
             //create an instance of the class we want to create
@@ -95,14 +83,5 @@ namespace Testing3
             Assert.AreEqual(AllOrders.Count, TestList.Count);
         }
 
-        [TestMethod]
-        public void TwoRecordsPresent()
-        {
-            //create an instance of thea class we want to create 
-            clsOrderCollection AllOrders = new clsOrderCollection();
-            //test to see that the tow valueas are the same 
-            Assert.AreEqual(AllOrders.Count, 2);
-        
-        }
     }
 }
