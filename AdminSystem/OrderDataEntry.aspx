@@ -34,7 +34,7 @@
         <p>
             &nbsp;</p>
         <asp:Button ID="btnCancel" runat="server" style="z-index: 1; left: 77px; top: 354px; position: absolute" Text="Cancel" />
-        <asp:Label ID="lblError" runat="server" style="z-index: 1; left: 15px; top: 320px; position: absolute" width="124px"></asp:Label>
+        <asp:Label ID="lblError" runat="server" style="z-index: 1; left: 15px; top: 320px; position: absolute; width: 941px;"></asp:Label>
     </form>
 </body>
 </html>

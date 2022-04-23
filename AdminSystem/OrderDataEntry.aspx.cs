@@ -97,7 +97,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
         }
 
     }
-
+    //need to check something here
     protected void txtCustomer_TextChanged(object sender, EventArgs e)
     {
 

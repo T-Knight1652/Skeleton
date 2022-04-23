@@ -8,6 +8,7 @@ using ClassLibrary;
 
 public partial class _1Viewer : System.Web.UI.Page
 {
+    //need to check this 
     protected void Page_Load(object sender, EventArgs e)
     {
         //create a new instance of the class
