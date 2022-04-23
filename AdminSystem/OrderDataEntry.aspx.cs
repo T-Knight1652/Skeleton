@@ -37,13 +37,30 @@ public partial class _1_DataEntry : System.Web.UI.Page
         //capture the Item
         string Item = txtItem.Text;
 
+        //a variable to store any error messages
+        string Error = "";
 
-        //store the order in the session object
-        Session["order"] = order;
+        //validate the data 
+        Error = order.Valid(Comments, Price, Item, OrderDate);
+        if (Error == "")
+        {
+            order.Comments = Comments;
+            // order.Price = Price;
+            order.Item = Item;
+            order.OrderDate = Convert.ToDateTime(OrderDate);
+            //store the order in the session object 
+            Session["order"] = order;
+            //redirect to the viewer page 
+            Response.Write("OrderViewer.aspx");
+        }
+        else
+        {
+            //display the error message
+            lblError.Text = Error;
+        }
 
 
-        //navigate to the viewer page
-        Response.Redirect("OrderViewer.aspx");
+       
     }
 
     protected void chkDispatch_CheckedChanged(object sender, EventArgs e)
@@ -80,7 +97,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
         }
 
     }
-
+    //need to check something here
     protected void txtCustomer_TextChanged(object sender, EventArgs e)
     {
 

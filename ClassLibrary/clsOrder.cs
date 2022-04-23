@@ -10,7 +10,7 @@ namespace ClassLibrary
         public DateTime mOrderDate; 
         public Boolean mDispatch; 
         public string mComments; 
-        public Double mPrice; 
+        public double mPrice; 
         public string mItem; 
 
         public string Item 
@@ -125,12 +125,12 @@ namespace ClassLibrary
             if (item.Length == 0) 
             { 
                 //record the error 
-                Error = Error + "the length of the ITem should not be left blank : "; 
+                Error = Error + "the length of the Item should not be left blank : "; 
             } 
             if (item.Length > 50) 
             { 
                 //record the error 
-                Error = Error + "the Item should not be more than 50 characters "; 
+                Error = Error + "the length of the Item should not be more than 50 characters "; 
             } 
            //-------- the order date valid method  ---------------------------
             try 
@@ -170,21 +170,21 @@ namespace ClassLibrary
             //----------the price valid method  -------------------------------
             try
             {
-                //copy the Total value to the DoubleTemp variable
+                //copy the price value to the DoubleTemp variable
                 DoubleTemp = Convert.ToDouble(price);
 
-                //if the value of total is less than 0
+                //if the value of price is less than 0
                 if (DoubleTemp < 0)
                 {
                     //record the error
-                    Error = Error + "The inputted total value cannot be negative";
+                    Error = Error + "The inputted price value cannot be negative";
                 } 
 
             }
             catch
             {
                 //record the error
-                Error = Error + "The inputted total value was invalid : ";
+                Error = Error + "The inputted price value was invalid : ";
             }
             return Error;
 
