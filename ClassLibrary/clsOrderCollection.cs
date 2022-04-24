@@ -7,6 +7,8 @@ namespace ClassLibrary
     {
         //private data member for the list 
         List<clsOrder> mOrderList = new List<clsOrder>();
+        //private data memeber thisAddress
+        clsOrder mThisOrder = new clsOrder();
 
         public List<clsOrder> OrderList
             {
@@ -19,7 +21,15 @@ namespace ClassLibrary
                 //set the private data 
             mOrderList = value;
             } }
-        public clsOrder ThisOrder { get; set; }
+        public clsOrder ThisOrder {
+            get {
+                //return the private data
+                return mThisOrder;
+            
+            } set {
+                //set the private data 
+                mThisOrder = value;
+            } }
         public int Count {
             get
             { 
@@ -62,6 +72,41 @@ namespace ClassLibrary
                 Index++;
 
             }
+        }
+
+        public int Add()
+        {
+            //adds a bew record to the database based on the values of mThisOrder
+            //connect to the database
+            clsDataConnection DB = new clsDataConnection();
+            //set the parametsrs for the stored procedure
+            DB.AddParameter("@Comments", mThisOrder.Comments);
+            DB.AddParameter("@Dispatch", mThisOrder.Dispatch);
+            DB.AddParameter("@OrderDate", mThisOrder.OrderDate);
+            DB.AddParameter("@Item", mThisOrder.Item);
+            DB.AddParameter("@Price", mThisOrder.Price);
+            return DB.Execute("sproc_tblOrder_Insert");
+
+        }
+
+        public void Update()
+        {
+            //adds a bew record to the database based on the values of mThisOrder
+            //connect to the database
+            clsDataConnection DB = new clsDataConnection();
+            //set the parametsrs for the stored procedure
+            DB.AddParameter("@Comments", mThisOrder.Comments);
+            DB.AddParameter("@Dispatch", mThisOrder.Dispatch);
+            DB.AddParameter("@OrderDate", mThisOrder.OrderDate);
+            DB.AddParameter("@Item", mThisOrder.Item);
+            DB.AddParameter("@Price", mThisOrder.Price);
+            //execute the stored procedure 
+            DB.Execute("sproc_tblOrder_Update");
+        }
+
+        public void Delete()
+        {
+            throw new NotImplementedException();
         }
     }
 }
