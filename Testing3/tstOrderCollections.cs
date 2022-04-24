@@ -39,9 +39,10 @@ namespace Testing3
             //test to see that the two values are the same
             Assert.AreEqual(AllOrders.OrderList, TestList);
         }
-    
+
         [TestMethod]
-        public void ThisOrderPropertyOK(){
+        public void ThisOrderPropertyOK()
+        {
             //create an instance of the class we want to create
             clsOrderCollection AllOrders = new clsOrderCollection();
             //create some test data to assign to the property
@@ -82,6 +83,73 @@ namespace Testing3
             //test to see that two values are the same 
             Assert.AreEqual(AllOrders.Count, TestList.Count);
         }
+        [TestMethod]
+        public void AddMethodOK() {
+            //create an instance of the class we want to create
+            clsOrderCollection AllOrders = new clsOrderCollection();
+            //crate the item of the test dat 
+            clsOrder TestItem = new clsOrder();
+            //var to store the primary key
+            var PrimaryKey = 0;
+            //set its properties 
+            TestItem.Comments = "some comments ";
+            TestItem.Dispatch = true;
+            TestItem.Item = "drink 1";
+            TestItem.OrderDate = DateTime.Now.Date;
+            TestItem.OrderID = 1;
+            TestItem.Price = 1.00;
+            //sest ThisORder to the test data 
+            AllOrders.ThisOrder = TestItem;
+            //add the record 
+            PrimaryKey = AllOrders.Add();
+            TestItem.OrderID = PrimaryKey;
+            //find the record 
+            AllOrders.ThisOrder.Find(PrimaryKey);
+            //test to tsee that the two values are the sam e
+            Assert.AreEqual(AllOrders.ThisOrder, TestItem);
+        }
+
+
+        [TestMethod]
+        public void UpdateMethodOK()
+        {
+            //create an instance of the class
+            clsOrderCollection AllOrders = new clsOrderCollection();
+            //create the item of test data
+            clsOrder TestItem = new clsOrder();
+            //var to store the primary key
+            Int32 PrimaryKey = 0;
+            //set its properties
+            TestItem.Comments = "some comments ";
+            TestItem.Dispatch = true;
+            TestItem.Item = "drink 1";
+            TestItem.OrderDate = DateTime.Now.Date;
+            TestItem.OrderID = 1;
+            TestItem.Price = 1.00;
+            //set thisCustomer to the test data
+            AllOrders.ThisOrder = TestItem;
+            //a the record
+            PrimaryKey = AllOrders.Add();
+            //set the primary key of the test data
+            TestItem.OrderID = PrimaryKey;
+            //modify the test data
+            TestItem.Comments = "other comments ";
+            TestItem.Dispatch = false;
+            TestItem.Item = "drink 2";
+            TestItem.OrderDate = DateTime.Now.Date;
+            TestItem.OrderID = 2;
+            TestItem.Price = 2.00;
+            //set the record based on the new test data
+            AllOrders.ThisOrder = TestItem;
+            //update the record
+            AllOrders.Update();
+            //find the record
+            AllOrders.ThisOrder.Find(PrimaryKey);
+            //test to see if ThisCustomer matches the test data
+            Assert.AreEqual(AllOrders.ThisOrder, TestItem);
+            AllOrders.Delete();
+        }
+
 
     }
 }

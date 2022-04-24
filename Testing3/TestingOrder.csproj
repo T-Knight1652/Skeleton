@@ -50,8 +50,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="tstOrdeCollection.cs" />
     <Compile Include="tstOrder.cs" />
+    <Compile Include="tstOrderCollections.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

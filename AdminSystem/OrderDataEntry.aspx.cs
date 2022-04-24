@@ -44,14 +44,18 @@ public partial class _1_DataEntry : System.Web.UI.Page
         Error = order.Valid(Comments, Price, Item, OrderDate);
         if (Error == "")
         {
-            order.Comments = Comments;
-            // order.Price = Price;
-            order.Item = Item;
+            order.Price = Convert.ToDouble(Price);
             order.OrderDate = Convert.ToDateTime(OrderDate);
-            //store the order in the session object 
-            Session["order"] = order;
-            //redirect to the viewer page 
-            Response.Write("OrderViewer.aspx");
+            order.Item = Item;
+            order.Comments = Comments;
+            order.Dispatch = chkDispatch.Checked;
+            //create a new instance of the order collection 
+            clsOrderCollection OrderList = new clsOrderCollection();
+            OrderList.ThisOrder = order;
+            //add the new record 
+            OrderList.Add();
+            //redirect back to the listpage
+            Response.Redirect("OrderList.aspx ");
         }
         else
         {
