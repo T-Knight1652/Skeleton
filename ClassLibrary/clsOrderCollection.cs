@@ -11,35 +11,35 @@ namespace ClassLibrary
         clsOrder mThisOrder = new clsOrder();
 
         public List<clsOrder> OrderList
-            {
+        {
             get
-            { 
-            //return the private data
-            return mOrderList;
+            {
+                //return the private data
+                return mOrderList;
             } set
             {
                 //set the private data 
-            mOrderList = value;
+                mOrderList = value;
             } }
         public clsOrder ThisOrder {
             get {
                 //return the private data
                 return mThisOrder;
-            
+
             } set {
                 //set the private data 
                 mThisOrder = value;
             } }
         public int Count {
             get
-            { 
-            //return the count of the list 
-            return mOrderList.Count;
+            {
+                //return the count of the list 
+                return mOrderList.Count;
             }
-               set
-                {
-            //needs adding
-                }
+            set
+            {
+                //needs adding
+            }
         }
         //constructor for the class 
         public clsOrderCollection()
@@ -47,7 +47,7 @@ namespace ClassLibrary
             //var fpr the index
             Int32 Index = 0;
             //var to store the record count 
-            Int32 RecordCount =0;
+            Int32 RecordCount = 0;
             //object for data connection
             clsDataConnection DB = new clsDataConnection();
             //execute the store procedure
@@ -55,10 +55,10 @@ namespace ClassLibrary
             //get the count of records
             RecordCount = DB.Count;
             //while there are records to process 
-            while(Index < RecordCount)
-            { 
-            //create a blank order
-            clsOrder order = new clsOrder();
+            while (Index < RecordCount)
+            {
+                //create a blank order
+                clsOrder order = new clsOrder();
                 //read in the fields from the curren record
                 order.Dispatch = Convert.ToBoolean(DB.DataTable.Rows[Index]["Dispatch"]);
                 order.Comments = Convert.ToString(DB.DataTable.Rows[Index]["Comments"]);
@@ -106,7 +106,23 @@ namespace ClassLibrary
 
         public void Delete()
         {
-            throw new NotImplementedException();
+            //deletes the record pointed by ThisOrder
+            //connect to the database 
+            clsOrderCollection DB = new clsOrderCollection();
+            //set the parameters for the stored procedure
+            DB.AddParameter("@OrderID", mThisOrder.OrderID);
+            //execute the stored procedure
+            DB.Execute("sproc_tblOrder_Delete");
+        }
+        public void ReportByItemsNoneFound()
+        {
+            //create an instance of the filtered data 
+            clsOrderCollection FilteredOrders = new clsOrderCollection();
+            //apply an item that does not exesit 
+            FilteredOrders.ReportByItem("drink 0");
+            //test to see that there are no records
+            Assert.AreEqual(0, FilteredOrders.Count);
+
         }
     }
 }

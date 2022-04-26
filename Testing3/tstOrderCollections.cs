@@ -84,7 +84,8 @@ namespace Testing3
             Assert.AreEqual(AllOrders.Count, TestList.Count);
         }
         [TestMethod]
-        public void AddMethodOK() {
+        public void AddMethodOK()
+        {
             //create an instance of the class we want to create
             clsOrderCollection AllOrders = new clsOrderCollection();
             //crate the item of the test dat 
@@ -145,11 +146,51 @@ namespace Testing3
             AllOrders.Update();
             //find the record
             AllOrders.ThisOrder.Find(PrimaryKey);
-            //test to see if ThisCustomer matches the test data
+            //test to see if ThisOrder matches the test data
             Assert.AreEqual(AllOrders.ThisOrder, TestItem);
             AllOrders.Delete();
         }
+        [TestMethod]
+        public void DeleteMethodOK()
+        {
+            //create an instance of the class
+            clsOrderCollection AllOrders = new clsOrderCollection();
+            //create the item of test data
+            clsOrder TestItem = new clsOrder();
+            //var to store the primary key
+            Int32 PrimaryKey = 0;
+            //set its properties
+            TestItem.Comments = "some comments ";
+            TestItem.Dispatch = true;
+            TestItem.Item = "drink 1";
+            TestItem.OrderDate = DateTime.Now.Date;
+            TestItem.OrderID = 1;
+            TestItem.Price = 1.00;
+            //set ThisORdr to the test data 
+            AllOrders.ThisOrder = TestItem;
+            //add the record 
+            PrimaryKey = AllOrders.Add();
+            //set the primary ey of the test data 
+            TestItem.OrderID = PrimaryKey;
+            //delete the record 
+            AllOrders.Delete();
+            //find the record 
+            AllOrders.ThisOrder.Find(PrimaryKey);
+            //test to see that the record was not found 
+            Assert.IsFalse(Found);
+        }
+        [TestMethod]
+        public void ReportByItemsMethodOk()
+        {
+            //create an instacn eof the clas containing the unfitelred results 
+            clsOrderCollection AllOrders = new clsOrderCollection();
+            //create an instace of the filtered data
+            clsOrderCollection FilteredOrders = new clsOrderCollection();
+            //apply a blank string - should return all the records
+            FilteredOrders.ReportByItems("");
+            //test to see that the two values are the same
+            Assert.AreEqual(AllOrders.Count, FilteredOrders.Count);
 
-
+        }
     }
 }
