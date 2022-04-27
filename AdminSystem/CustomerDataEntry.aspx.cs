@@ -37,7 +37,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
         //variable to store error message
         string Error = "";
         //validate the data
-        Error = ACustomer.Valid(Fullname, Password, Email, CreationDate);
+        Error = ACustomer.Valid(Password, Fullname, Email, CreationDate);
         if (Error =="")
         {
             //capture the values
@@ -139,5 +139,10 @@ public partial class _1_DataEntry : System.Web.UI.Page
         txtEmail.Text = Customer.ThisCustomer.Email;
         txtCreationDate.Text = Customer.ThisCustomer.CreationDate.ToString();
         chkOverEighteen.Checked = Customer.ThisCustomer.OverEighteen;
+    }
+
+    protected void btnCancel_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("CustomerList.aspx");
     }
 }
