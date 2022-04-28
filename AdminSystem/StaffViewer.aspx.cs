@@ -13,7 +13,7 @@ public partial class _1Viewer : System.Web.UI.Page
         //create a new instance of clcStaff
         clsStaff staff = new clsStaff();
         //gt the data from the session object
-        staff = (clsStaff)Session["staff"];
+        staff = (clsStaff) Session["staff"];
 
         //display the full name for this entry
         Response.Write(staff.FullName);

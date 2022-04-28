@@ -230,7 +230,7 @@ namespace Test_FrameWork
                 //check that the first record ID 36
                 if (FilteredStaff.StaffList[0].EmployeeId != 21)
                 {
-                    OK = flase;
+                    OK = false;
                 }
                 //chec that the first record is ID 37
                 if (FilteredStaff.StaffList[1].EmployeeId != 22)
