@@ -379,7 +379,7 @@ namespace Testing3
             //string variable to store any error message  
             String Error = "";
             //create some test data to pass to the method  
-            string Commnets = ""; //this should trigger an error  
+        //    string Commnets = ""; //this should trigger an error  
             //invoke the method 
             Error = order.Valid(OrderDate, Comments, Price, Item);
             //test to see that the result is correct 

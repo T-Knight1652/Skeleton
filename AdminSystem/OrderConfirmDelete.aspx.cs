@@ -24,15 +24,13 @@ public partial class _1_ConfirmDelete : System.Web.UI.Page
 
     protected void btnYes_Click(object sender, EventArgs e)
     {
-        //create a new instnce of the order class
-        clsOrderCollection OrderList = new clsOrderCollection();
-        //find the record to delete
-        OrderList.ThisOrder.Find(OrderID);
-        //delete the record
-        OrderList.Delete();
-        //RepeatDirection back to the main page
+        clsOrderCollection order = new clsOrderCollection();
+        //find the record to delete 
+        order.ThisOrder.Find(OrderID);
+        //delete the record 
+        order.Delete();
+        //redirect back to the main page
         Response.Redirect("OrderList.aspx");
-
     }
 
     protected void btnNo_Click(object sender, EventArgs e)

@@ -184,7 +184,7 @@ namespace ClassLibrary
             catch
             {
                 //record the error
-                Error = Error + "The inputted price value was invalid : ";
+                Error = Error + "The inputted price value was invalid ";
             }
             return Error;
 
