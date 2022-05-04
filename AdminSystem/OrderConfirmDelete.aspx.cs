@@ -35,6 +35,7 @@ public partial class _1_ConfirmDelete : System.Web.UI.Page
 
     protected void btnNo_Click(object sender, EventArgs e)
     {
-
+        //if no delete return to the main data entry
+        Response.Redirect("OrderList.aspx");
     }
 }

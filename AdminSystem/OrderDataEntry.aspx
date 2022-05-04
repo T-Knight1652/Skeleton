@@ -18,7 +18,7 @@
         <p>
             <asp:Label ID="lblOrderDate" runat="server" style="z-index: 1; left: 20px; top: 165px; position: absolute" Text="Order Date" width="124px"></asp:Label>
             <asp:TextBox ID="txtItem" runat="server" style="z-index: 1; left: 156px; top: 114px; position: absolute"></asp:TextBox>
-            <asp:Label ID="lblItem" runat="server" style="z-index: 1; left: 54px; top: 111px; position: absolute" Text="Item"></asp:Label>
+            <asp:Label ID="lblItem" runat="server" style="z-index: 1; left: 32px; top: 112px; position: absolute" Text="Item"></asp:Label>
         </p>
         <asp:Label ID="lblPrice" runat="server" style="z-index: 1; left: 25px; top: 206px; position: absolute" Text="Price" width="124px"></asp:Label>
         <asp:TextBox ID="txtPrice" runat="server" style="z-index: 1; left: 159px; top: 210px; position: absolute; height: 13px"></asp:TextBox>
@@ -33,7 +33,7 @@
         <asp:Button ID="btnOK" runat="server" OnClick="btnOK_Click" style="z-index: 1; left: 10px; top: 352px; position: absolute; height: 35px;" Text="OK" />
         <p>
             &nbsp;</p>
-        <asp:Button ID="btnCancel" runat="server" style="z-index: 1; left: 77px; top: 354px; position: absolute" Text="Cancel" />
+        <asp:Button ID="btnCancel" runat="server" style="z-index: 1; left: 77px; top: 354px; position: absolute; bottom: 143px;" Text="Cancel" OnClick="btnCancel_Click" />
         <asp:Label ID="lblError" runat="server" style="z-index: 1; left: 15px; top: 320px; position: absolute; width: 941px;"></asp:Label>
     </form>
 </body>
