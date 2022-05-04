@@ -33,7 +33,7 @@
         <asp:Button ID="btnOK" runat="server" OnClick="btnOK_Click" style="z-index: 1; left: 10px; top: 352px; position: absolute; height: 35px;" Text="OK" />
         <p>
             &nbsp;</p>
-        <asp:Button ID="btnCancel" runat="server" style="z-index: 1; left: 77px; top: 354px; position: absolute" Text="Cancel" />
+        <asp:Button ID="btnCancel" runat="server" style="z-index: 1; left: 77px; top: 354px; position: absolute" Text="Cancel" OnClick="btnCancel_Click" />
         <asp:Label ID="lblError" runat="server" style="z-index: 1; left: 15px; top: 320px; position: absolute; width: 941px;"></asp:Label>
     </form>
 </body>

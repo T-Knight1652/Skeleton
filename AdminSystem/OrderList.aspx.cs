@@ -37,7 +37,7 @@ public partial class _1_List : System.Web.UI.Page
         lstOrderList.DataBind();
     }
 
-    protected void Button1_Click(object sender, EventArgs e)
+    protected void btnAdd_Click(object sender, EventArgs e)
     {
         //add method
         Session["OrderID"] = -1;
@@ -117,3 +117,4 @@ public partial class _1_List : System.Web.UI.Page
 
     }
 }
+//
