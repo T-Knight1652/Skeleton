@@ -25,7 +25,7 @@
             <br />
             <br />
             <br />
-            <asp:Button ID="btnAdd" runat="server" OnClick="btnAdd_Click" Text="Add" />
+            <asp:Button ID="btnAdd" runat="server" OnClick="Button1_Click" style="z-index: 1; left: 20px; top: 339px; position: absolute; height: 35px" Text="Add" />
             <br />
             &nbsp;<br />
             <asp:Label ID="lblEnterAnItem" runat="server" Text="Enter an Item"></asp:Label>

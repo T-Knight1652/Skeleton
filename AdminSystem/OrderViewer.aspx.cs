@@ -13,9 +13,13 @@ public partial class _1Viewer : System.Web.UI.Page
     {
         //create a new instance of the class
         clsOrder order = new clsOrder();
+
         //get the data from the session object
         order = (clsOrder)Session["order"];
+
         //display the properties on the page
+        
+
         Response.Write(order.Item);
         Response.Write(order.OrderDate);
         Response.Write(order.Price);
